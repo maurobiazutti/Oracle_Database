@@ -129,7 +129,6 @@ ADD (
   CONSTRAINT job_id_pk PRIMARY KEY(job_id)
 );
 
-
 /* Employees */
 
 CREATE TABLE employees (
