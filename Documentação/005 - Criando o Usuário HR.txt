@@ -1,10 +1,11 @@
---
+--OBS => Abra este script no Oracle SQL Developer e execute (F5)
+
 -- 005 - Criando o Usuário HR
 
 
 /*
  No Oracle SQL Developer conecte-se como usuário SYS utilizando a sua conexão para o usuário SYS
- Abra este script no Oracle SQL Developer e execute (F5)
+ OBS => Abra este script no Oracle SQL Developer e execute (F5)
 /*
 
 /*
