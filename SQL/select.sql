@@ -53,7 +53,7 @@ FROM    employees;
 SELECT  first_name, last_name, salary, (salary + 100) * 1.15 
 FROM    employees;
 
-Entendo o valor Nulo (NULL)
+--Entendo o valor Nulo (NULL)
 
 SELECT  first_name, last_name, job_id, salary,  commission_pct
 FROM    employees;

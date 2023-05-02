@@ -51,10 +51,12 @@ WHERE first_name LIKE 'Sa%';
 
 -- Combinando o uso de vários caracteres curinga
 
+--Vai buscar todos na coluna last_name segundo letra com a
 SELECT first_name, last_name
 FROM employees
 WHERE last_name LIKE '_a%';
 
+--Vai buscar todos na coluna last_name terminados em a
 SELECT first_name, last_name
 FROM employees
 WHERE last_name LIKE '%a';
