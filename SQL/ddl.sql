@@ -31,6 +31,9 @@ RENAME COLUMN nu TO numero;
 ALTER TABLE minha_tabela
 RENAME TO minha_tabela1;
 
+--Apaga todos os dados da tabela. OBS não pode ser revertido
+TRUNCATE TABLE nome_da_tabela;
+
 DESC minha_tabela1;
 
 
