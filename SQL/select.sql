@@ -85,6 +85,26 @@ FROM   employees;
 SELECT first_name || ' ' || last_name || ', data de admissão: ' || hire_date "Funcionário"
 FROM   employees;
 
+
+-- Utilizando Concatenação com Alias
+SELECT
+    first_name  || ' ' || 
+    last_name || ' ' "Nome", 
+    salary "Salario",
+    department_id "Setor"
+FROM
+    employees
+WHERE
+    department_id = 60;
+
+NOME                SALARIO     SETOR
+Alexander Hunold 	9000	    60
+Bruce Ernst 	    6000	    60
+David Austin 	    4800	    60
+Valli Pataballa 	4800	    60
+Diana Lorentz 	    4200	    60
+
+
 -- Utilizando Operador alternativo para aspas
 
 SELECT department_name || q'[ Department's Manager Id: ]'

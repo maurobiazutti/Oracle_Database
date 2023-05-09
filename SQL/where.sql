@@ -37,6 +37,13 @@ SELECT last_name, salary
 FROM employees
 WHERE salary BETWEEN 10000 AND 15000;
 
+-- Seleciona o MENOR E MAIOR VALOR
+SELECT MIN (salary)
+FROM employees;
+
+SELECT MAX (salary)
+FROM employees;
+
 -- Selecionando valores dentro de uma lista utilizando o operador IN
 
 SELECT employee_id, last_name, salary, manager_id, job_id
@@ -170,3 +177,14 @@ WHERE employee_id = &employee_id ;
 DEFINE employee_id
 
 UNDEFINE employee_id
+
+AND - Retorna TRUE se ambas as
+condiÇões sao verdadeiras
+
+OR - Retorna TRUE se pelo menos uma das
+condigées for verdadeira
+
+NOT - Retorna a negagao da condicao.
+Retorna TRUE se a condição é falsa
+Retorna FALSE se a condição é verdadeira
+Retorna NULL se a condição é NULL
