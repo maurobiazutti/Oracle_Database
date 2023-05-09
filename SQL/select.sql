@@ -43,7 +43,7 @@ FROM   departments;
 SELECT  first_name, last_name, salary, salary * 1.15 
 FROM    employees;
 
--- Regras de Precedência de Operadores
+-- Regras de Precedência de Operadores (MESMA DA MATEMATICA)
 
 SELECT  first_name, last_name, salary, salary + 100 * 1.15 
 FROM    employees;
@@ -53,7 +53,7 @@ FROM    employees;
 SELECT  first_name, last_name, salary, (salary + 100) * 1.15 
 FROM    employees;
 
---Entendo o valor Nulo (NULL)
+--Entendo o valor Nulo (NULL É A AUSÊNCIA DE VALOR)
 
 SELECT  first_name, last_name, job_id, salary,  commission_pct
 FROM    employees;
