@@ -1,4 +1,3 @@
-
 -- Agregando dados utilizando Funções de Grupo
 -- 
 

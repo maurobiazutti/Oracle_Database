@@ -63,6 +63,8 @@ SELECT last_name, employee_id, commission_pct, manager_id,
 FROM employees;
 
 -- Utilizando a Função NVL2
+--A função NVL2 é uma função condicional em bancos de dados que permite retornar um valor 
+--específico se uma expressão é nula, ou outro valor se a expressão não é nula.
 
 SELECT last_name, salary, commission_pct, 
        NVL2(commission_pct, 10, 0) PERCENTUAL_ATERADO
