@@ -9,17 +9,26 @@ SELECT employee_id, last_name, department_id
 FROM employees
 WHERE last_name = 'KING';
 
+--UPPER(last_name) -> vai passar todas as strinta da coluna last_name para maiusculas
 SELECT employee_id, last_name, department_id
 FROM employees
 WHERE UPPER(last_name) = 'KING';
 
 -- Funções de Manipulação de Caracteres
 
-SELECT CONCAT(' Curso: ','Introdução ORACLE 19c'), SUBSTR('Introdução ORACLE 19c',1,11),
-       LENGTH('Introdução ORACLE 19c'), INSTR('Introdução ORACLE 19c','ORACLE')
+-- CONCAT(' Curso: ','Introdução ORACLE 19c') -> Para concatenar dois ou mais argumentos separados por ","
+-- SUBSTR('Introdução ORACLE 19c',1,11) -> Vai pegar do 1° ao 10° caracter
+-- LENGTH('Introdução ORACLE 19c') -> Conta a quantidade de caracteres
+-- INSTR('Introdução ORACLE 19c','ORACLE') -> Vai comparar o primeiro argumento com o segundo e se houver semelhança vai devolver a posião onde começa a string
+SELECT CONCAT(' Curso: ','Introdução ORACLE 19c'), 
+       SUBSTR('Introdução ORACLE 19c',1,11),
+       LENGTH('Introdução ORACLE 19c'), 
+       INSTR('Introdução ORACLE 19c','ORACLE')
 FROM dual;
 
-SELECT first_name "Nome", LPAD(first_name, 20, ' ') "Nome alinhado a direita", RPAD(first_name, 20, ' ') "Nome alinhado a esquerda"
+SELECT first_name "Nome", 
+       LPAD(first_name, 20, ' ') "Nome alinhado a direita", 
+       RPAD(first_name, 20, ' ') "Nome alinhado a esquerda"
 FROM   employees;
 
 SELECT job_title, REPLACE(job_title, 'President', 'Presidente') CARGO
