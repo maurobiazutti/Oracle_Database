@@ -1,6 +1,7 @@
 --Bloco Anônimo Estrutura
 
 SET SERVEROUTPUT ON
+
 DECLARE
     vnumb1 NUMBER(11,2) := 400;
     vnumb2 NUMBER(11,2) := 400;
@@ -57,10 +58,29 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('Booleano = ' || 'FALSE OR NULL');
     END IF;
   
+  
    SELECT rowid
    INTO   vRowid
    FROM   funcionarios
    WHERE  first_name = 'Steven' AND last_name = 'King';
    DBMS_OUTPUT.PUT_LINE('Rowid = ' || vRowid );
     
+END;
+
+
+-- Variável BIND
+-- Declarada em um ambiente externo ao bloco pl/sql
+
+VARIABLE qmedia NUMBER
+
+DECLARE
+    vnumero1 NUMBER(11,2) := 500;
+    vnumero2 NUMBER(11,2) := 600;
+BEGIN
+    :qmedia := (vnumero1 + vnumero2) / 2;
+    DBMS_OUTPUT.PUT_LINE('Media = ' || TO_CHAR(:qmedia));
+EXCEPTION
+    WHEN OTHERS
+    THEN
+    DBMS_OUTPUT.PUT_LINE('Erro Oracle: ' || SQLCODE || SQLERRM);
 END;
