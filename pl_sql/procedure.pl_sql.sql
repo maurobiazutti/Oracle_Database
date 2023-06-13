@@ -1,5 +1,6 @@
--- Criando uma Procedure de Banco de Dados
+-- Criando uma Procedure de Banco de Dados ENTRADA tipo IN
 
+--EX - 1 - Inserindo novos dados na tabela
 CREATE OR REPLACE PROCEDURE PRC_INSERE_EMPREGADO
 -- variaveis que vão receber os parametros
   (pfirst_name    IN VARCHAR2,
@@ -68,3 +69,26 @@ WHERE  first_name = 'Greg' AND
        last_name = 'Lake';
 
 
+--EX - 2 - Aumento de Salario
+CREATE OR REPLACE PROCEDURE PRC_AUMENTA_SALARIO_EMPREGADO
+  (pemployee_id   IN NUMBER,
+   ppercentual    IN NUMBER)
+IS
+  -- Nenhuma vÃ¡riÃ¡vel declarada
+BEGIN
+  UPDATE employees 
+  SET salary = salary * (1 + ppercentual / 100)
+  WHERE employee_id = pemployee_id;
+
+EXCEPTION
+  WHEN OTHERS 
+  THEN
+     RAISE_APPLICATION_ERROR(-20001, 'Erro Oracle: ' || SQLCODE || ' - ' || SQLERRM);
+END;
+
+- Executando a Procedure pelo Bloco PL/SQL
+
+BEGIN
+  PRC_AUMENTA_SALARIO_EMPREGADO(109,10);
+  COMMIT;
+END;
