@@ -75,3 +75,13 @@ ORDER BY Salario_Anual;--TBM pode ser referenciado por ALIAS
 SELECT last_name, department_id, salary
 FROM employees
 ORDER BY department_id, salary DESC; --Pode ser ordenado por duas colunas
+
+
+--Variavel de Substituição
+SELECT last_name, department_id, salary, job_id
+FROM employees
+WHERE job_id = '&job_id'; --Se for string ou data tem q esta entre ' '
+
+SELECT last_name, department_id, salary, job_id
+FROM employees
+WHERE department_id = &department_id; -- Para Numero
