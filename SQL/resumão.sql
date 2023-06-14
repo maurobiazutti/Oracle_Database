@@ -57,3 +57,21 @@ OR job_id = 'IT_PROG';
 SELECT employee_id, last_name ,salary, job_id
 FROM employees
 WHERE job_id NOT IN ('IT_PROG', 'FI_ACCOUNT', 'SA_REP'); --Vai Trazer todos que não estão na lista.
+
+
+--ORDER BY
+SELECT last_name, hire_date
+FROM employees
+ORDER BY hire_date; --Ordem Crescente
+
+SELECT last_name, hire_date
+FROM employees
+ORDER BY hire_date DESC;-- Ordem Descendente
+
+SELECT last_name, salary*12 Salario_Anual
+FROM employees
+ORDER BY Salario_Anual;--TBM pode ser referenciado por ALIAS
+
+SELECT last_name, department_id, salary
+FROM employees
+ORDER BY department_id, salary DESC; --Pode ser ordenado por duas colunas
