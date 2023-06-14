@@ -85,3 +85,45 @@ WHERE job_id = '&job_id'; --Se for string ou data tem q esta entre ' '
 SELECT last_name, department_id, salary, job_id
 FROM employees
 WHERE department_id = &department_id; -- Para Numero
+
+
+/*FUNÇÕES SINGLE-ROW
+
+--Funções de Caracter
+
+--Case Conversion
+LOWER   -> Transforma em minuscula
+UPPER   -> Transforma em Maiuscula
+INITCAP -> Transforma primeira letra de cada palavra em Maiuscula
+
+--Caracter Manipulation
+CONCAT  -> (‘Curso', 'Introdução ORACLE 19c’) Concatena = Curso Introdução ORACLE 19c
+SUBSTR  -> (‘Introdução_ORACLE 19c’,1,11) pega do 1 ao 11 caracter = introduçao_ 
+LENGTH  -> (‘Introdução ORACLE 19c’) Vai devolver o tamanho = 21
+INSTR   -> (‘Introdução ORACLE 19c’, ORACLE) Vai procurar um 2°string dentro da 1° devolve a posição = 12 
+LPAD    -> (‘Introdução ORACLE 19c’, 30, '*') Vai alinha tuda a direito e completar o tamanho de 30 com '*' = *******Introdução ORACLE 19c
+RPAD    -> (‘Introdução ORACLE 19c’, 30, '*') Vai alinha tuda a esquerda e completar o tamanho de 30 com '*' = Introdução ORACLE 19c*******
+REPLACE -> (‘Introdução ORACLE 12c', '12c', '19c’) Vai procurar e substituir o 2° argumento pelo 3° =  Introdução ORACLE 19c 
+TRIM    -> (';' FROM ';nome@gmail.com;') Vai procurar o primeiro argumento e excluir do segundo = nome@gmail.com
+RTRIM   -> (';nome@gmail.com;', ';') Vai excluir do 1° o que tiver no 2° do lado direito = ;nome@gmail.com
+LTRIM   -> (';nome@gmail.com;', ';') Vai excluir do 1° o que tiver no 2° do lado esquedo = nome@gmail.com;
+*/
+
+--UPPER
+SELECT last_name, department_id, salary, job_id
+FROM employees
+WHERE UPPER (last_name) = 'KING';
+
+--CONCAT
+SELECT CONCAT(' Curso: ','IntroduÃ§Ã£o ORACLE 19c'), SUBSTR('IntroduÃ§Ã£o ORACLE 19c',1,11),
+       LENGTH('IntroduÃ§Ã£o ORACLE 19c'), INSTR('IntroduÃ§Ã£o ORACLE 19c','ORACLE')
+FROM dual;
+
+--LPAD / RPAD
+SELECT first_name "Nome", LPAD(first_name, 20, ' ') "Nome alinhado a direita", RPAD(first_name, 20, ' ') "Nome alinhado a esquerda"
+FROM   employees;
+
+--REPLACE
+SELECT job_title, REPLACE(job_title, 'President', 'Presidente') CARGO
+FROM jobs
+WHERE  job_title = 'President';
