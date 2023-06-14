@@ -127,3 +127,20 @@ FROM   employees;
 SELECT job_title, REPLACE(job_title, 'President', 'Presidente') CARGO
 FROM jobs
 WHERE  job_title = 'President';
+
+-- Funçoes tipo NUMBER
+--ROUND(numero, precisão) +6 ARREDONDA PARA CIMA
+SELECT ROUND(45.923,2), ROUND(45.923,0)
+FROM dual;
+
+--TRUNC (numero, precisão) CORTA SEM ARRENDONDAR
+SELECT TRUNC(45.923,2), TRUNC(45.923,0)
+FROM dual;
+
+--RESTO
+SELECT MOD(1300,600) RESTO
+FROM dual;
+
+--Numero Absoluto e RAIZ
+SELECT ABS(-9), SQRT(9)
+FROM dual;
