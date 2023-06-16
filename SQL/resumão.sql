@@ -159,3 +159,16 @@ FROM employees;
 
 SELECT last_name, TO_CHAR(hire_date, 'FMDD, "de" Month "de" YYYY') DT_ADMISSÃ‚O
 FROM employees;
+
+-- Utilizando a Funções TO_CHAR com Numeros
+
+SELECT first_name, last_name, TO_CHAR(salary, 'L99G999G999D99') SALARIO
+FROM employees;
+
+SELECT first_name, last_name, TO_CHAR(salary, 'L99G999G999D99') SALARIO
+FROM employees;
+
+-- Utilizando a FunÃ§Ã£o TO_NUMBER
+
+SELECT TO_NUMBER('12000,50')
+FROM  dual;
