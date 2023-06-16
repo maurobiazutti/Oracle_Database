@@ -147,7 +147,6 @@ FROM dual;
 
 
 -- Utilizando a Funções TO_CHAR com Datas
-
 SELECT last_name,TO_CHAR(hire_date, 'DD/MM/YYYY  HH24:MI:SS') DT_ADMISSÃ‚O
 FROM employees;
 
@@ -293,3 +292,76 @@ Quanto menor é a variância, mais próximos os valores estão da média;
 mas quanto maior ela é, mais os valores estão distantes da média.*/
 SELECT VARIANCE (commission_pct)
 FROM   employees;
+
+
+-- Criado Grupos utilizando a Clausula GROUP BY
+--"Media salario por departamento"
+SELECT department_id, ROUND(AVG(salary),2) 
+FROM   employees
+GROUP BY department_id 
+ORDER BY department_id;
+
+
+-- Utilizando a clÃ¡sula Group by com mais de uma Coluna ou ExpressÃ£o
+SELECT department_id, job_id, SUM(salary)
+FROM employees
+GROUP BY department_id, job_id
+ORDER BY department_id, job_id DESC;
+
+SELECT department_id, job_id, SUM(salary)
+FROM employees
+GROUP BY department_id, job_id
+ORDER BY department_id, job_id;
+
+-- Consultas incorretas utilizando FunÃ§Ãµes de Grupo
+SELECT department_id, AVG(salary)
+FROM   employees;
+
+-- Corrigindo consultas incorretas utilizando FunÃ§Ãµes de Grupo
+SELECT department_id,  AVG(salary)
+FROM employees
+GROUP BY department_id;
+
+-- Consultas incorretas utilizando FunÃ§Ãµes de Grupo
+SELECT department_id, MAX(salary)
+FROM   employees
+WHERE  MAX(salary) > 10000
+GROUP BY department_id;
+
+-- Corrigindo consultas incorretas utilizando Funções de Grupo
+
+-- Restringindo Grupos utilizando a clausula HAVING
+
+/*WHERE Seleciona as linhas a serem recuperadas
+GROUP BY  Formar os grupos
+HAVING  Selecionar os grupos a serem RECUPERADOS
+SELECT Exibir colunas ou expressÕes  
+ORDER BY ordenando pelo critério definido*/
+
+
+SELECT department_id, MAX(salary)
+FROM   employees
+GROUP BY department_id;
+HAVING MAX(salary)>=10000;
+
+SELECT job_id, SUM(salary) TOTAL
+FROM   employees
+WHERE  job_id <> 'SA_REP'
+GROUP BY job_id
+HAVING   SUM(salary) > 15000
+ORDER BY SUM(salary);
+
+-- Aninhando Funções de Grupo
+SELECT MAX(AVG(salary))
+FROM employees
+GROUP BY department_id;
+
+SELECT department_id, ROUND(AVG(salary), 2)
+FROM employees
+GROUP BY department_id
+ORDER BY AVG(SALARY) DESC;
+
+
+SELECT department_id, AVG(salary)
+FROM   employees
+GROUP BY department_id;
