@@ -154,24 +154,22 @@ FROM employees;
 SELECT sysdate,TO_CHAR(sysdate, 'DD/MM/YYYY  HH24:MI:SS') DATA
 FROM   dual;
 
+--Vai imprimir 03 de   junho    de     2023 
 SELECT last_name, TO_CHAR(hire_date, 'DD, "de" Month "de" YYYY') DT_ADMISSÃ‚O
 FROM employees;
 
+--FMDD vai Eliminar os espaços e zeros que vem por padrão imprimir 3 de junho de 2023 
 SELECT last_name, TO_CHAR(hire_date, 'FMDD, "de" Month "de" YYYY') DT_ADMISSÃ‚O
 FROM employees;
 
 
 -- Utilizando a Funções TO_CHAR com Numeros
-
-SELECT first_name, last_name, TO_CHAR(salary, 'L99G999G999D99') SALARIO
-FROM employees;
-
+--Pode Ser usado como Modelo Padrão para converção de dinheiro 'L99G999G999D99' "L moeda local" "G virgula" "D decimal ponto"
 SELECT first_name, last_name, TO_CHAR(salary, 'L99G999G999D99') SALARIO
 FROM employees;
 
 
 -- Utilizando a Funções TO_DATE
-
 SELECT TO_DATE('06/02/2020','DD/MM/YYYY') DATA
 FROM  dual;
 
@@ -179,9 +177,14 @@ SELECT first_name, last_name, hire_date
 FROM   employees
 WHERE  hire_date = TO_DATE('17/06/2003','DD/MM/YYYY');
 
+-- Utilizando Funções Aninhadas
+-- Vai retorna o numero de meses entre a data atual e a data de entrada "hire_date"
+SELECT first_name, last_name, ROUND(MONTHS_BETWEEN(SYSDATE, hire_date),0) NUMERO_MESES
+FROM   employees
+WHERE  hire_date = TO_DATE('17/06/2003','DD/MM/YYYY');
+
 
 -- Utilizando a Funções COALESCE
-
 SELECT COALESCE(NULL, NULL, 'ExpresssÃ£o 3'), COALESCE(NULL, 'ExpressÃ£o 2', 'ExpresssÃ£o 3'),
        COALESCE('ExpressÃ£o 1', 'ExpressÃ£o 2', 'ExpresssÃ£o 3')
 FROM dual;
@@ -193,29 +196,25 @@ FROM employees;
 
 
 -- Utilizando a Funções NVL
-
 SELECT last_name, salary, NVL(commission_pct, 0), salary*12 SALARIO_ANUAL, 
        (salary*12) + (salary*12*NVL(commission_pct, 0)) REMUNERACAO_ANUAL
 FROM employees;
 
 -- Utilizando a FunÃ§Ã£o NVL2
-
 SELECT last_name, salary, commission_pct, 
        NVL2(commission_pct, 10, 0) PERCENTUAL_ATERADO
 FROM employees;
 
 -- Utilizando a Função NULLIF
-
 SELECT NULLIF(1000,1000), NULLIF(1000,2000)
 FROM dual;
 
-SELECT first_name, last_name, LENGTH(first_name) "ExpressÃ£o 1",
-       LENGTH(last_name) "ExpressÃ£o 2", NULLIF(LENGTH(first_name), LENGTH(last_name)) RESULTADO
+SELECT first_name, last_name, LENGTH(first_name) "Expressão 1",
+       LENGTH(last_name) "Expressão 2", NULLIF(LENGTH(first_name), LENGTH(last_name)) RESULTADO
 FROM employees;
 
 
 -- Expressão CASE
-
 SELECT last_name, job_id, salary,
                           CASE job_id
                              WHEN 'IT_PROG'   
@@ -229,10 +228,68 @@ SELECT last_name, job_id, salary,
 FROM employees;
 
 -- Utilizando a Funções DECODE
-
 SELECT last_name, job_id, salary,
 DECODE(job_id, 'IT_PROG' , 1.10*salary,
                'ST_CLERK', 1.15*salary,
                'SA_REP'  , 1.20*salary
                          , salary) "NOVO SALARIO"
 FROM employees
+
+-- Utilizando as Funções AVG e SUM
+SELECT round(AVG(salary),2), SUM(salary)
+FROM   employees;
+
+-- Utilizando as Funções MIN e MAX
+SELECT MIN(hire_date), MAX(hire_date)
+FROM   employees;
+
+SELECT MIN(salary), MAX(salary)
+FROM   employees;
+
+-- Utilizando a Função COUNT
+SELECT COUNT(*)
+FROM   employees;
+
+SELECT COUNT(commission_pct)
+FROM   employees;
+
+SELECT COUNT(commission_pct), COUNT(*)
+FROM employees;
+
+SELECT COUNT(NVL(commission_pct,0))
+FROM employees;
+
+-- Utilizando a Função COUNT com DISTINCT
+SELECT COUNT(DISTINCT department_id)
+FROM   employees;
+
+SELECT COUNT(department_id)
+FROM   employees;
+
+--Funções de Grupo e valores NULOS
+--Ignora os valores nulos
+SELECT AVG(commission_pct)
+FROM   employees;
+
+-- Tratamento de NULOS em Funções de Grupo 
+-- Jeito certo para calcular media
+SELECT AVG(NVL(commission_pct, 0))
+FROM   employees;
+
+SELECT round(AVG(NVL(salary, 0)),2)
+FROM   employees;
+
+--Desvio padrão
+/*O desvio padrão é uma medida que expressa o grau de dispersão de um conjunto de dados. 
+Ou seja, o desvio padrão indica o quanto um conjunto de dados é uniforme. 
+Quanto mais próximo de 0 for o desvio padrão, mais homogêneo são os dados*/
+SELECT STDDEV(commission_pct)
+FROM   employees;
+
+--Variance
+/*Dado um conjunto de dados, a variância é uma medida de dispersão que mostra o 
+quão distante cada valor desse conjunto está do valor central (médio). 
+Quanto menor é a variância, mais próximos os valores estão da média; 
+mas quanto maior ela é, mais os valores estão distantes da média.*/
+SELECT VARIANCE (commission_pct)
+FROM   employees;
