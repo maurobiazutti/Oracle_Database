@@ -168,7 +168,13 @@ FROM employees;
 SELECT first_name, last_name, TO_CHAR(salary, 'L99G999G999D99') SALARIO
 FROM employees;
 
--- Utilizando a FunÃ§Ã£o TO_NUMBER
 
-SELECT TO_NUMBER('12000,50')
+
+-- Utilizando a Funções TO_DATE
+
+SELECT TO_DATE('06/02/2020','DD/MM/YYYY') DATA
 FROM  dual;
+
+SELECT first_name, last_name, hire_date
+FROM   employees
+WHERE  hire_date = TO_DATE('17/06/2003','DD/MM/YYYY');
