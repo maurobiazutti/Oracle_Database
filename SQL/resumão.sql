@@ -204,7 +204,7 @@ SELECT last_name, salary, commission_pct,
        NVL2(commission_pct, 10, 0) PERCENTUAL_ATERADO
 FROM employees;
 
--- Utilizando a FunÃ§Ã£o NULLIF
+-- Utilizando a Função NULLIF
 
 SELECT NULLIF(1000,1000), NULLIF(1000,2000)
 FROM dual;
@@ -214,7 +214,7 @@ SELECT first_name, last_name, LENGTH(first_name) "ExpressÃ£o 1",
 FROM employees;
 
 
--- ExpressÃ£o CASE
+-- Expressão CASE
 
 SELECT last_name, job_id, salary,
                           CASE job_id
@@ -228,7 +228,7 @@ SELECT last_name, job_id, salary,
                            END "NOVO SALARIO"
 FROM employees;
 
--- Utilizando a FunÃ§Ã£o DECODE
+-- Utilizando a Funções DECODE
 
 SELECT last_name, job_id, salary,
 DECODE(job_id, 'IT_PROG' , 1.10*salary,
