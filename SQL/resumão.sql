@@ -144,3 +144,18 @@ FROM dual;
 --Numero Absoluto e RAIZ
 SELECT ABS(-9), SQRT(9)
 FROM dual;
+
+
+-- Utilizando a Funções TO_CHAR com Datas
+
+SELECT last_name,TO_CHAR(hire_date, 'DD/MM/YYYY  HH24:MI:SS') DT_ADMISSÃ‚O
+FROM employees;
+
+SELECT sysdate,TO_CHAR(sysdate, 'DD/MM/YYYY  HH24:MI:SS') DATA
+FROM   dual;
+
+SELECT last_name, TO_CHAR(hire_date, 'DD, "de" Month "de" YYYY') DT_ADMISSÃ‚O
+FROM employees;
+
+SELECT last_name, TO_CHAR(hire_date, 'FMDD, "de" Month "de" YYYY') DT_ADMISSÃ‚O
+FROM employees;
