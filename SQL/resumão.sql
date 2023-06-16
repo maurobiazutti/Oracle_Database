@@ -160,6 +160,7 @@ FROM employees;
 SELECT last_name, TO_CHAR(hire_date, 'FMDD, "de" Month "de" YYYY') DT_ADMISSÃ‚O
 FROM employees;
 
+
 -- Utilizando a Funções TO_CHAR com Numeros
 
 SELECT first_name, last_name, TO_CHAR(salary, 'L99G999G999D99') SALARIO
@@ -167,7 +168,6 @@ FROM employees;
 
 SELECT first_name, last_name, TO_CHAR(salary, 'L99G999G999D99') SALARIO
 FROM employees;
-
 
 
 -- Utilizando a Funções TO_DATE
@@ -178,3 +178,37 @@ FROM  dual;
 SELECT first_name, last_name, hire_date
 FROM   employees
 WHERE  hire_date = TO_DATE('17/06/2003','DD/MM/YYYY');
+
+
+-- Utilizando a Funções COALESCE
+
+SELECT COALESCE(NULL, NULL, 'ExpresssÃ£o 3'), COALESCE(NULL, 'ExpressÃ£o 2', 'ExpresssÃ£o 3'),
+       COALESCE('ExpressÃ£o 1', 'ExpressÃ£o 2', 'ExpresssÃ£o 3')
+FROM dual;
+
+SELECT last_name, employee_id, commission_pct, manager_id, 
+       COALESCE(TO_CHAR(commission_pct),TO_CHAR(manager_id),
+       'Sem percentual de comissÃ£o e sem gerente')
+FROM employees;
+
+
+-- Utilizando a Funções NVL
+
+SELECT last_name, salary, NVL(commission_pct, 0), salary*12 SALARIO_ANUAL, 
+       (salary*12) + (salary*12*NVL(commission_pct, 0)) REMUNERACAO_ANUAL
+FROM employees;
+
+-- Utilizando a FunÃ§Ã£o NVL2
+
+SELECT last_name, salary, commission_pct, 
+       NVL2(commission_pct, 10, 0) PERCENTUAL_ATERADO
+FROM employees;
+
+-- Utilizando a FunÃ§Ã£o NULLIF
+
+SELECT NULLIF(1000,1000), NULLIF(1000,2000)
+FROM dual;
+
+SELECT first_name, last_name, LENGTH(first_name) "ExpressÃ£o 1",
+       LENGTH(last_name) "ExpressÃ£o 2", NULLIF(LENGTH(first_name), LENGTH(last_name)) RESULTADO
+FROM employees;
