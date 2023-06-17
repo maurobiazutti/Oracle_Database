@@ -199,7 +199,7 @@ SELECT last_name, salary, NVL(commission_pct, 0), salary*12 SALARIO_ANUAL,
        (salary*12) + (salary*12*NVL(commission_pct, 0)) REMUNERACAO_ANUAL
 FROM employees;
 
--- Utilizando a FunÃ§Ã£o NVL2
+-- Utilizando a Função NVL2
 SELECT last_name, salary, commission_pct, 
        NVL2(commission_pct, 10, 0) PERCENTUAL_ATERADO
 FROM employees;
@@ -279,22 +279,26 @@ SELECT round(AVG(NVL(salary, 0)),2)
 FROM   employees;
 
 --Desvio padrão
-/*O desvio padrão é uma medida que expressa o grau de dispersão de um conjunto de dados. 
+/*
+O desvio padrão é uma medida que expressa o grau de dispersão de um conjunto de dados. 
 Ou seja, o desvio padrão indica o quanto um conjunto de dados é uniforme. 
-Quanto mais próximo de 0 for o desvio padrão, mais homogêneo são os dados*/
+Quanto mais próximo de 0 for o desvio padrão, mais homogêneo são os dados
+*/
 SELECT STDDEV(commission_pct)
 FROM   employees;
 
 --Variance
-/*Dado um conjunto de dados, a variância é uma medida de dispersão que mostra o 
+/*
+Dado um conjunto de dados, a variância é uma medida de dispersão que mostra o 
 quão distante cada valor desse conjunto está do valor central (médio). 
 Quanto menor é a variância, mais próximos os valores estão da média; 
-mas quanto maior ela é, mais os valores estão distantes da média.*/
+mas quanto maior ela é, mais os valores estão distantes da média.
+*/
 SELECT VARIANCE (commission_pct)
 FROM   employees;
 
 
--- Criado Grupos utilizando a Clausula GROUP BY
+-- Criado Grupos utilizando a Cláusula GROUP BY
 --"Media salario por departamento"
 SELECT department_id, ROUND(AVG(salary),2) 
 FROM   employees
@@ -302,7 +306,7 @@ GROUP BY department_id
 ORDER BY department_id;
 
 
--- Utilizando a clÃ¡sula Group by com mais de uma Coluna ou ExpressÃ£o
+-- Utilizando a cláusula Group by com mais de uma Coluna ou ExpressÃ£o
 SELECT department_id, job_id, SUM(salary)
 FROM employees
 GROUP BY department_id, job_id
@@ -313,16 +317,16 @@ FROM employees
 GROUP BY department_id, job_id
 ORDER BY department_id, job_id;
 
--- Consultas incorretas utilizando FunÃ§Ãµes de Grupo
+-- Consultas INCORRETAS utilizando Funções de Grupo
 SELECT department_id, AVG(salary)
 FROM   employees;
 
--- Corrigindo consultas incorretas utilizando FunÃ§Ãµes de Grupo
+-- Corrigindo consultas INCORRETAS utilizando Funções de Grupo
 SELECT department_id,  AVG(salary)
 FROM employees
 GROUP BY department_id;
 
--- Consultas incorretas utilizando FunÃ§Ãµes de Grupo
+-- Consultas INCORRETAS utilizando Funções de Grupo
 SELECT department_id, MAX(salary)
 FROM   employees
 WHERE  MAX(salary) > 10000
@@ -332,12 +336,13 @@ GROUP BY department_id;
 
 -- Restringindo Grupos utilizando a clausula HAVING
 
-/*WHERE Seleciona as linhas a serem recuperadas
+/*
+WHERE Seleciona as linhas a serem recuperadas
 GROUP BY  Formar os grupos
 HAVING  Selecionar os grupos a serem RECUPERADOS
 SELECT Exibir colunas ou expressÕes  
-ORDER BY ordenando pelo critério definido*/
-
+ORDER BY ordenando pelo critério definido
+*/
 
 SELECT department_id, MAX(salary)
 FROM   employees
