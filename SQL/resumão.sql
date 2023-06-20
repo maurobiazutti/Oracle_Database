@@ -226,6 +226,7 @@ SELECT last_name, job_id, salary,
                            END "NOVO SALARIO"
 FROM employees;
 
+
 -- Utilizando a Funções DECODE
 SELECT last_name, job_id, salary,
 DECODE(job_id, 'IT_PROG' , 1.10*salary,
@@ -317,6 +318,7 @@ FROM employees
 GROUP BY department_id, job_id
 ORDER BY department_id, job_id;
 
+
 -- Consultas INCORRETAS utilizando Funções de Grupo
 SELECT department_id, AVG(salary)
 FROM   employees;
@@ -372,6 +374,7 @@ FROM   employees
 GROUP BY department_id;
 
 
+-- ********* JOIN *********
 
 -- Exibindo dados a partir de multiplas TABELAS JOINS 
 
@@ -428,10 +431,10 @@ SELECT empregado.employee_id "Id empregado",
        empregado.last_name "Sobrenome empregado",
        gerente.employee_id "Id gerente", 
        gerente.last_name "Sobrenome gerente"
-FROM employees empregado JOIN employees gerente
+FROM employees empregado 
+JOIN employees gerente
 ON (empregado.manager_id = gerente.employee_id)
 ORDER BY empregado.employee_id;
-
 
 
 -- Nonequijoins
@@ -460,7 +463,8 @@ COMMIT;
 SELECT *
 FROM   job_grades;
 
--- Nonequijoins
+-- Nonequijoins 
+/*Realiza um JOIN quando a condição não é uma IGUALDADE*/
 
 SELECT   e.employee_id, e.salary, j.grade_level, j.lowest_sal, j.highest_sal
 FROM     employees e 
@@ -474,3 +478,37 @@ FROM     employees e
      ON  NVL(e.salary,0) >= j.lowest_sal AND 
          NVL(e.salary,0) <= j.highest_sal
 ORDER BY e.salary;
+
+--JOIN 
+--TRAZ DADOS QUE CONTEM NAS DUAS TABELAS
+SELECT e.first_name, e.last_name, d.department_id, d.department_name
+FROM employees e JOIN departments d
+     ON (e.department_id = d.department_id) 
+ORDER BY d.department_id;
+
+--LEFT OUTER JOIN
+/*TRAZ OS DADOS QUE SATISFAÇA AS CONDIÇÕES DAS DUAS TABELAS E 
+TRAZ TBM OS DADOS DA TABELA DA ESQUERDA, NULL 
+OU QUE NÃO TENHA LIGAÇÃO COM A ATABELA DA DIREIRTA*/
+SELECT e.first_name, e.last_name, d.department_id, d.department_name
+FROM employees e LEFT OUTER JOIN departments d
+     ON (e.department_id = d.department_id) 
+ORDER BY d.department_id;
+
+
+--RIGHT OUTER JOIN 
+/*TRAZ OS DADOS QUE SATISFAÇA AS CONDIÇÕES DAS
+DUAS TABELAS E TRAZ OS DADOS DA TABELA DA DIREITA QUE NÃO 
+TEM LIGAÇÃO OU É NULL*/
+SELECT d.department_id, d.department_name, e.first_name, e.last_name
+FROM employees e RIGHT OUTER JOIN departments d
+     ON (e.department_id = d.department_id) 
+ORDER BY d.department_id;
+
+-- FULL OUTER JOIN  
+/*TRAZ OS DADOS QUE SATISFAÇA A LIGAÇÃO E TRAZ OS DADOS DAS 
+DUAS TABELAS DA ESQUERDA E DA DIREITA*/
+SELECT d.department_id, d.department_name, e.first_name, e.last_name
+FROM   employees e FULL OUTER JOIN departments d
+     ON (e.department_id = d.department_id) 
+ORDER BY d.department_id;
