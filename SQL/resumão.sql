@@ -512,3 +512,11 @@ SELECT d.department_id, d.department_name, e.first_name, e.last_name
 FROM   employees e FULL OUTER JOIN departments d
      ON (e.department_id = d.department_id) 
 ORDER BY d.department_id;
+
+-- CROSS JOIN
+/* Faz ligação de todos os dados de 
+uma tabela com outra.
+Raramente usada*/
+SELECT last_name, department_name
+FROM employees
+CROSS JOIN departments;
