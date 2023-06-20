@@ -1,90 +1,194 @@
 --Exibe todas as colunas e dados da tabela employees
-SELECT * 
-FROM employees;
+SELECT
+       *
+FROM
+       EMPLOYEES;
 
 --Exibe as colunas first_name concatenada com last_name com Alias "Nome Completo" da tabela employees
-SELECT first_name || ' ' || last_name "Nome Completo", job_id "Cargo" ,commission_pct "Comissão"
-FROM employees;
+SELECT
+       FIRST_NAME || ' ' || LAST_NAME "Nome Completo",
+       JOB_ID                         "Cargo",
+       COMMISSION_PCT                 "Comissão"
+FROM
+       EMPLOYEES;
 
 /*Retornar apenas valores únicos de uma coluna ou conjunto de colunas. 
 Ele remove as duplicatas dos resultados da consulta, 
 exibindo apenas um registro para cada valor único encontrado*/
-SELECT DISTINCT department_id
-FROM employees;
+SELECT
+       DISTINCT DEPARTMENT_ID
+FROM
+       EMPLOYEES;
 
 --WHERE
 --Vai trazer todos os department_id = 90
-SELECT employee_id, last_name, job_id, department_id
-FROM employees
-WHERE department_id = 90;
+SELECT
+       EMPLOYEE_ID,
+       LAST_NAME,
+       JOB_ID,
+       DEPARTMENT_ID
+FROM
+       EMPLOYEES
+WHERE
+       DEPARTMENT_ID = 90;
 
 --Vai buscar os salarios entre 8000 e 15000
-SELECT first_name, salary
-FROM employees
-WHERE salary BETWEEN 8000 and 15000;
+SELECT
+       FIRST_NAME,
+       SALARY
+FROM
+       EMPLOYEES
+WHERE
+       SALARY BETWEEN 8000
+       AND 15000;
 
 --Busca uma lista de valores utilizando o operador IN
-SELECT first_name, salary, job_id
-FROM employees
-WHERE job_id IN ('IT_PROG', 'FI_ACCOUNT', 'SA_REP');
+SELECT
+       FIRST_NAME,
+       SALARY,
+       JOB_ID
+FROM
+       EMPLOYEES
+WHERE
+       JOB_ID IN ('IT_PROG',
+       'FI_ACCOUNT',
+       'SA_REP');
 
 --Busca com WHERE LIKE
-SELECT first_name ,last_name
-FROM employees
-WHERE first_name LiKE '%ha%'--Busca todas as palavras que tenha "ha"
-AND last_name LIKE '%ll%';--"AND -> E" Todos q contenha "ll" no last_name
+SELECT
+       FIRST_NAME,
+       LAST_NAME
+FROM
+       EMPLOYEES
+WHERE
+       FIRST_NAME LIKE '%ha%' --Busca todas as palavras que tenha "ha"
+       AND LAST_NAME LIKE '%ll%';
 
-WHERE first_name LiKE 'I%';--Começa com "I" 
-WHERE first_name LiKE 'ar%';--Termina com "ar"
-WHERE first_name LiKE 'I%l'; --Começa com "I" e termina com "l"
+--"AND -> E" Todos q contenha "ll" no last_name
+
+WHERE FIRST_NAME LIKE 'I%'; --Começa com "I"
+
+
+WHERE FIRST_NAME LIKE 'ar%'; --Termina com "ar"
+
+
+WHERE FIRST_NAME LIKE 'I%l'; --Começa com "I" e termina com "l"
+
 
 --WHERE NULL
-WHERE manager_id IS NULL; -- Para busca "NULL" na coluna
+WHERE MANAGER_ID IS NULL; -- Para busca "NULL" na coluna
+
 
 --WHERE AND EXIBE QUANDO AS DUAS CONDIÇÕES FOREM TRUE
-SELECT employee_id, last_name, job_id, salary
-FROM employees
-WHERE salary >= 5000
-AND job_id = 'IT_PROG';--Busca pelos salarios MAIOR OU IGUAL A 5000 E que sejam IT_PROG
+SELECT
+       EMPLOYEE_ID,
+       LAST_NAME,
+       JOB_ID,
+       SALARY
+FROM
+       EMPLOYEES
+WHERE
+       SALARY >= 5000
+       AND JOB_ID = 'IT_PROG';
+
+--Busca pelos salarios MAIOR OU IGUAL A 5000 E que sejam IT_PROG
 
 --WHERE OR Vai trazer todos que atenda pelo menos UM dos requisitos
-SELECT employee_id, last_name, job_id, salary
-FROM employees
-WHERE salary >= 5000
-OR job_id = 'IT_PROG';
+SELECT
+       EMPLOYEE_ID,
+       LAST_NAME,
+       JOB_ID,
+       SALARY
+FROM
+       EMPLOYEES
+WHERE
+       SALARY >= 5000
+       OR JOB_ID = 'IT_PROG';
 
 --WHERE NOT
-SELECT employee_id, last_name ,salary, job_id
-FROM employees
-WHERE job_id NOT IN ('IT_PROG', 'FI_ACCOUNT', 'SA_REP'); --Vai Trazer todos que não estão na lista.
+SELECT
+       EMPLOYEE_ID,
+       LAST_NAME,
+       SALARY,
+       JOB_ID
+FROM
+       EMPLOYEES
+WHERE
+       JOB_ID NOT IN ('IT_PROG',
+       'FI_ACCOUNT',
+       'SA_REP');
+
+--Vai Trazer todos que não estão na lista.
 
 
 --ORDER BY
-SELECT last_name, hire_date
-FROM employees
-ORDER BY hire_date; --Ordem Crescente
+SELECT
+       LAST_NAME,
+       HIRE_DATE
+FROM
+       EMPLOYEES
+ORDER BY
+       HIRE_DATE;
 
-SELECT last_name, hire_date
-FROM employees
-ORDER BY hire_date DESC;-- Ordem Descendente
+--Ordem Crescente
 
-SELECT last_name, salary*12 Salario_Anual
-FROM employees
-ORDER BY Salario_Anual;--TBM pode ser referenciado por ALIAS
+SELECT
+       LAST_NAME,
+       HIRE_DATE
+FROM
+       EMPLOYEES
+ORDER BY
+       HIRE_DATE DESC;
 
-SELECT last_name, department_id, salary
-FROM employees
-ORDER BY department_id, salary DESC; --Pode ser ordenado por duas colunas
+-- Ordem Descendente
+
+SELECT
+       LAST_NAME,
+       SALARY*12 SALARIO_ANUAL
+FROM
+       EMPLOYEES
+ORDER BY
+       SALARIO_ANUAL;
+
+--TBM pode ser referenciado por ALIAS
+
+SELECT
+       LAST_NAME,
+       DEPARTMENT_ID,
+       SALARY
+FROM
+       EMPLOYEES
+ORDER BY
+       DEPARTMENT_ID,
+       SALARY DESC;
+
+--Pode ser ordenado por duas colunas
 
 
 --Variavel de Substituição
-SELECT last_name, department_id, salary, job_id
-FROM employees
-WHERE job_id = '&job_id'; --Se for string ou data tem q esta entre ' '
+SELECT
+       LAST_NAME,
+       DEPARTMENT_ID,
+       SALARY,
+       JOB_ID
+FROM
+       EMPLOYEES
+WHERE
+       JOB_ID = '&job_id';
 
-SELECT last_name, department_id, salary, job_id
-FROM employees
-WHERE department_id = &department_id; -- Para Numero
+--Se for string ou data tem q esta entre ' '
+
+SELECT
+       LAST_NAME,
+       DEPARTMENT_ID,
+       SALARY,
+       JOB_ID
+FROM
+       EMPLOYEES
+WHERE
+       DEPARTMENT_ID = &DEPARTMENT_ID;
+
+-- Para Numero
 
 
 /*FUNÇÕES SINGLE-ROW
@@ -110,174 +214,333 @@ LTRIM   -> (';nome@gmail.com;', ';') Vai excluir do 1° o que tiver no 2° do la
 */
 
 --UPPER
-SELECT last_name, department_id, salary, job_id
-FROM employees
-WHERE UPPER (last_name) = 'KING';
+SELECT
+       LAST_NAME,
+       DEPARTMENT_ID,
+       SALARY,
+       JOB_ID
+FROM
+       EMPLOYEES
+WHERE
+       UPPER (LAST_NAME) = 'KING';
 
 --CONCAT
-SELECT CONCAT(' Curso: ','IntroduÃ§Ã£o ORACLE 19c'), SUBSTR('IntroduÃ§Ã£o ORACLE 19c',1,11),
-       LENGTH('IntroduÃ§Ã£o ORACLE 19c'), INSTR('IntroduÃ§Ã£o ORACLE 19c','ORACLE')
-FROM dual;
+SELECT
+       CONCAT(' Curso: ',
+       'IntroduÃ§Ã£o ORACLE 19c'),
+       SUBSTR('IntroduÃ§Ã£o ORACLE 19c',
+       1,
+       11),
+       LENGTH('IntroduÃ§Ã£o ORACLE 19c'),
+       INSTR('IntroduÃ§Ã£o ORACLE 19c',
+       'ORACLE')
+FROM
+       DUAL;
 
 --LPAD / RPAD
-SELECT first_name "Nome", LPAD(first_name, 20, ' ') "Nome alinhado a direita", RPAD(first_name, 20, ' ') "Nome alinhado a esquerda"
-FROM   employees;
+SELECT
+       FIRST_NAME "Nome",
+       LPAD(FIRST_NAME,
+       20,
+       ' ')       "Nome alinhado a direita",
+       RPAD(FIRST_NAME,
+       20,
+       ' ')       "Nome alinhado a esquerda"
+FROM
+       EMPLOYEES;
 
 --REPLACE
-SELECT job_title, REPLACE(job_title, 'President', 'Presidente') CARGO
-FROM jobs
-WHERE  job_title = 'President';
+SELECT
+       JOB_TITLE,
+       REPLACE(JOB_TITLE,
+       'President',
+       'Presidente') CARGO
+FROM
+       JOBS
+WHERE
+       JOB_TITLE = 'President';
 
 -- Funçoes tipo NUMBER
 --ROUND(numero, precisão) +6 ARREDONDA PARA CIMA
-SELECT ROUND(45.923,2), ROUND(45.923,0)
-FROM dual;
+SELECT
+       ROUND(45.923,
+       2),
+       ROUND(45.923,
+       0)
+FROM
+       DUAL;
 
 --TRUNC (numero, precisão) CORTA SEM ARRENDONDAR
-SELECT TRUNC(45.923,2), TRUNC(45.923,0)
-FROM dual;
+SELECT
+       TRUNC(45.923,
+       2),
+       TRUNC(45.923,
+       0)
+FROM
+       DUAL;
 
 --RESTO
-SELECT MOD(1300,600) RESTO
-FROM dual;
+SELECT
+       MOD(1300,
+       600) RESTO
+FROM
+       DUAL;
 
 --Numero Absoluto e RAIZ
-SELECT ABS(-9), SQRT(9)
-FROM dual;
-
+SELECT
+       ABS(-9),
+       SQRT(9)
+FROM
+       DUAL;
 
 -- Utilizando a Funções TO_CHAR com Datas
-SELECT last_name,TO_CHAR(hire_date, 'DD/MM/YYYY  HH24:MI:SS') DT_ADMISSÃ‚O
-FROM employees;
+SELECT
+       LAST_NAME,
+       TO_CHAR(HIRE_DATE,
+       'DD/MM/YYYY  HH24:MI:SS') DT_ADMISSÃ‚O
+FROM
+       EMPLOYEES;
 
-SELECT sysdate,TO_CHAR(sysdate, 'DD/MM/YYYY  HH24:MI:SS') DATA
-FROM   dual;
+SELECT
+       SYSDATE,
+       TO_CHAR(SYSDATE,
+       'DD/MM/YYYY  HH24:MI:SS') DATA
+FROM
+       DUAL;
 
---Vai imprimir 03 de   junho    de     2023 
-SELECT last_name, TO_CHAR(hire_date, 'DD, "de" Month "de" YYYY') DT_ADMISSÃ‚O
-FROM employees;
+--Vai imprimir 03 de   junho    de     2023
+SELECT
+       LAST_NAME,
+       TO_CHAR(HIRE_DATE,
+       'DD, "de" Month "de" YYYY') DT_ADMISSÃ‚O
+FROM
+       EMPLOYEES;
 
---FMDD vai Eliminar os espaços e zeros que vem por padrão imprimir 3 de junho de 2023 
-SELECT last_name, TO_CHAR(hire_date, 'FMDD, "de" Month "de" YYYY') DT_ADMISSÃ‚O
-FROM employees;
-
+--FMDD vai Eliminar os espaços e zeros que vem por padrão imprimir 3 de junho de 2023
+SELECT
+       LAST_NAME,
+       TO_CHAR(HIRE_DATE,
+       'FMDD, "de" Month "de" YYYY') DT_ADMISSÃ‚O
+FROM
+       EMPLOYEES;
 
 -- Utilizando a Funções TO_CHAR com Numeros
 --Pode Ser usado como Modelo Padrão para converção de dinheiro 'L99G999G999D99' "L moeda local" "G virgula" "D decimal ponto"
-SELECT first_name, last_name, TO_CHAR(salary, 'L99G999G999D99') SALARIO
-FROM employees;
-
+SELECT
+       FIRST_NAME,
+       LAST_NAME,
+       TO_CHAR(SALARY,
+       'L99G999G999D99') SALARIO
+FROM
+       EMPLOYEES;
 
 -- Utilizando a Funções TO_DATE
-SELECT TO_DATE('06/02/2020','DD/MM/YYYY') DATA
-FROM  dual;
+SELECT
+       TO_DATE('06/02/2020',
+       'DD/MM/YYYY') DATA
+FROM
+       DUAL;
 
-SELECT first_name, last_name, hire_date
-FROM   employees
-WHERE  hire_date = TO_DATE('17/06/2003','DD/MM/YYYY');
+SELECT
+       FIRST_NAME,
+       LAST_NAME,
+       HIRE_DATE
+FROM
+       EMPLOYEES
+WHERE
+       HIRE_DATE = TO_DATE('17/06/2003',
+       'DD/MM/YYYY');
 
 -- Utilizando Funções Aninhadas
 -- Vai retorna o numero de meses entre a data atual e a data de entrada "hire_date"
-SELECT first_name, last_name, ROUND(MONTHS_BETWEEN(SYSDATE, hire_date),0) NUMERO_MESES
-FROM   employees
-WHERE  hire_date = TO_DATE('17/06/2003','DD/MM/YYYY');
-
+SELECT
+       FIRST_NAME,
+       LAST_NAME,
+       ROUND(MONTHS_BETWEEN(SYSDATE,
+       HIRE_DATE),
+       0) NUMERO_MESES
+FROM
+       EMPLOYEES
+WHERE
+       HIRE_DATE = TO_DATE('17/06/2003',
+       'DD/MM/YYYY');
 
 -- Utilizando a Funções COALESCE
-SELECT COALESCE(NULL, NULL, 'ExpresssÃ£o 3'), COALESCE(NULL, 'ExpressÃ£o 2', 'ExpresssÃ£o 3'),
-       COALESCE('ExpressÃ£o 1', 'ExpressÃ£o 2', 'ExpresssÃ£o 3')
-FROM dual;
+SELECT
+       COALESCE(NULL,
+       NULL,
+       'ExpresssÃ£o 3'),
+       COALESCE(NULL,
+       'ExpressÃ£o 2',
+       'ExpresssÃ£o 3'),
+       COALESCE('ExpressÃ£o 1',
+       'ExpressÃ£o 2',
+       'ExpresssÃ£o 3')
+FROM
+       DUAL;
 
-SELECT last_name, employee_id, commission_pct, manager_id, 
-       COALESCE(TO_CHAR(commission_pct),TO_CHAR(manager_id),
+SELECT
+       LAST_NAME,
+       EMPLOYEE_ID,
+       COMMISSION_PCT,
+       MANAGER_ID,
+       COALESCE(TO_CHAR(COMMISSION_PCT),
+       TO_CHAR(MANAGER_ID),
        'Sem percentual de comissÃ£o e sem gerente')
-FROM employees;
-
+FROM
+       EMPLOYEES;
 
 -- Utilizando a Funções NVL
-SELECT last_name, salary, NVL(commission_pct, 0), salary*12 SALARIO_ANUAL, 
-       (salary*12) + (salary*12*NVL(commission_pct, 0)) REMUNERACAO_ANUAL
-FROM employees;
+SELECT
+       LAST_NAME,
+       SALARY,
+       NVL(COMMISSION_PCT,
+       0),
+       SALARY*12 SALARIO_ANUAL,
+       (SALARY*12) + (SALARY*12*NVL(COMMISSION_PCT,
+       0))       REMUNERACAO_ANUAL
+FROM
+       EMPLOYEES;
 
 -- Utilizando a Função NVL2
-SELECT last_name, salary, commission_pct, 
-       NVL2(commission_pct, 10, 0) PERCENTUAL_ATERADO
-FROM employees;
+SELECT
+       LAST_NAME,
+       SALARY,
+       COMMISSION_PCT,
+       NVL2(COMMISSION_PCT,
+       10,
+       0) PERCENTUAL_ATERADO
+FROM
+       EMPLOYEES;
 
 -- Utilizando a Função NULLIF
-SELECT NULLIF(1000,1000), NULLIF(1000,2000)
-FROM dual;
+SELECT
+       NULLIF(1000,
+       1000),
+       NULLIF(1000,
+       2000)
+FROM
+       DUAL;
 
-SELECT first_name, last_name, LENGTH(first_name) "Expressão 1",
-       LENGTH(last_name) "Expressão 2", NULLIF(LENGTH(first_name), LENGTH(last_name)) RESULTADO
-FROM employees;
-
+SELECT
+       FIRST_NAME,
+       LAST_NAME,
+       LENGTH(FIRST_NAME) "Expressão 1",
+       LENGTH(LAST_NAME)  "Expressão 2",
+       NULLIF(LENGTH(FIRST_NAME),
+       LENGTH(LAST_NAME)) RESULTADO
+FROM
+       EMPLOYEES;
 
 -- Expressão CASE
-SELECT last_name, job_id, salary,
-                          CASE job_id
-                             WHEN 'IT_PROG'   
-                               THEN 1.10*salary
-                             WHEN 'ST_CLERK' 
-                               THEN 1.15*salary
-                             WHEN 'SA_REP' 
-                               THEN 1.20*salary
-                             ELSE salary 
-                           END "NOVO SALARIO"
-FROM employees;
-
+SELECT
+       LAST_NAME,
+       JOB_ID,
+       SALARY,
+       CASE JOB_ID
+              WHEN 'IT_PROG' THEN
+                     1.10*SALARY
+              WHEN 'ST_CLERK' THEN
+                     1.15*SALARY
+              WHEN 'SA_REP' THEN
+                     1.20*SALARY
+              ELSE
+                     SALARY
+       END "NOVO SALARIO"
+FROM
+       EMPLOYEES;
 
 -- Utilizando a Funções DECODE
-SELECT last_name, job_id, salary,
-DECODE(job_id, 'IT_PROG' , 1.10*salary,
-               'ST_CLERK', 1.15*salary,
-               'SA_REP'  , 1.20*salary
-                         , salary) "NOVO SALARIO"
-FROM employees
-
--- Utilizando as Funções AVG e SUM
-SELECT round(AVG(salary),2), SUM(salary)
-FROM   employees;
+SELECT
+       LAST_NAME,
+       JOB_ID,
+       SALARY,
+       DECODE(JOB_ID,
+       'IT_PROG',
+       1.10*SALARY,
+       'ST_CLERK',
+       1.15*SALARY,
+       'SA_REP',
+       1.20*SALARY,
+       SALARY) "NOVO SALARIO"
+FROM
+       EMPLOYEES
+ -- Utilizando as Funções AVG e SUM
+       SELECT
+              ROUND(AVG(SALARY),
+              2),
+              SUM(SALARY)
+       FROM
+              EMPLOYEES;
 
 -- Utilizando as Funções MIN e MAX
-SELECT MIN(hire_date), MAX(hire_date)
-FROM   employees;
+SELECT
+       MIN(HIRE_DATE),
+       MAX(HIRE_DATE)
+FROM
+       EMPLOYEES;
 
-SELECT MIN(salary), MAX(salary)
-FROM   employees;
+SELECT
+       MIN(SALARY),
+       MAX(SALARY)
+FROM
+       EMPLOYEES;
 
 -- Utilizando a Função COUNT
-SELECT COUNT(*)
-FROM   employees;
+SELECT
+       COUNT(*)
+FROM
+       EMPLOYEES;
 
-SELECT COUNT(commission_pct)
-FROM   employees;
+SELECT
+       COUNT(COMMISSION_PCT)
+FROM
+       EMPLOYEES;
 
-SELECT COUNT(commission_pct), COUNT(*)
-FROM employees;
+SELECT
+       COUNT(COMMISSION_PCT),
+       COUNT(*)
+FROM
+       EMPLOYEES;
 
-SELECT COUNT(NVL(commission_pct,0))
-FROM employees;
+SELECT
+       COUNT(NVL(COMMISSION_PCT,
+       0))
+FROM
+       EMPLOYEES;
 
 -- Utilizando a Função COUNT com DISTINCT
-SELECT COUNT(DISTINCT department_id)
-FROM   employees;
+SELECT
+       COUNT(DISTINCT DEPARTMENT_ID)
+FROM
+       EMPLOYEES;
 
-SELECT COUNT(department_id)
-FROM   employees;
+SELECT
+       COUNT(DEPARTMENT_ID)
+FROM
+       EMPLOYEES;
 
 --Funções de Grupo e valores NULOS
 --Ignora os valores nulos
-SELECT AVG(commission_pct)
-FROM   employees;
+SELECT
+       AVG(COMMISSION_PCT)
+FROM
+       EMPLOYEES;
 
--- Tratamento de NULOS em Funções de Grupo 
+-- Tratamento de NULOS em Funções de Grupo
 -- Jeito certo para calcular media
-SELECT AVG(NVL(commission_pct, 0))
-FROM   employees;
+SELECT
+       AVG(NVL(COMMISSION_PCT,
+       0))
+FROM
+       EMPLOYEES;
 
-SELECT round(AVG(NVL(salary, 0)),2)
-FROM   employees;
+SELECT
+       ROUND(AVG(NVL(SALARY,
+       0)),
+       2)
+FROM
+       EMPLOYEES;
 
 --Desvio padrão
 /*
@@ -285,8 +548,10 @@ O desvio padrão é uma medida que expressa o grau de dispersão de um conjunto 
 Ou seja, o desvio padrão indica o quanto um conjunto de dados é uniforme. 
 Quanto mais próximo de 0 for o desvio padrão, mais homogêneo são os dados
 */
-SELECT STDDEV(commission_pct)
-FROM   employees;
+SELECT
+       STDDEV(COMMISSION_PCT)
+FROM
+       EMPLOYEES;
 
 --Variance
 /*
@@ -295,44 +560,77 @@ quão distante cada valor desse conjunto está do valor central (médio).
 Quanto menor é a variância, mais próximos os valores estão da média; 
 mas quanto maior ela é, mais os valores estão distantes da média.
 */
-SELECT VARIANCE (commission_pct)
-FROM   employees;
-
+SELECT
+       VARIANCE (COMMISSION_PCT)
+FROM
+       EMPLOYEES;
 
 -- Criado Grupos utilizando a Cláusula GROUP BY
 --"Media salario por departamento"
-SELECT department_id, ROUND(AVG(salary),2) 
-FROM   employees
-GROUP BY department_id 
-ORDER BY department_id;
-
+SELECT
+       DEPARTMENT_ID,
+       ROUND(AVG(SALARY),
+       2)
+FROM
+       EMPLOYEES
+GROUP BY
+       DEPARTMENT_ID
+ORDER BY
+       DEPARTMENT_ID;
 
 -- Utilizando a cláusula Group by com mais de uma Coluna ou ExpressÃ£o
-SELECT department_id, job_id, SUM(salary)
-FROM employees
-GROUP BY department_id, job_id
-ORDER BY department_id, job_id DESC;
+SELECT
+       DEPARTMENT_ID,
+       JOB_ID,
+       SUM(SALARY)
+FROM
+       EMPLOYEES
+GROUP BY
+       DEPARTMENT_ID,
+       JOB_ID
+ORDER BY
+       DEPARTMENT_ID,
+       JOB_ID DESC;
 
-SELECT department_id, job_id, SUM(salary)
-FROM employees
-GROUP BY department_id, job_id
-ORDER BY department_id, job_id;
-
+SELECT
+       DEPARTMENT_ID,
+       JOB_ID,
+       SUM(SALARY)
+FROM
+       EMPLOYEES
+GROUP BY
+       DEPARTMENT_ID,
+       JOB_ID
+ORDER BY
+       DEPARTMENT_ID,
+       JOB_ID;
 
 -- Consultas INCORRETAS utilizando Funções de Grupo
-SELECT department_id, AVG(salary)
-FROM   employees;
+SELECT
+       DEPARTMENT_ID,
+       AVG(SALARY)
+FROM
+       EMPLOYEES;
 
 -- Corrigindo consultas INCORRETAS utilizando Funções de Grupo
-SELECT department_id,  AVG(salary)
-FROM employees
-GROUP BY department_id;
+SELECT
+       DEPARTMENT_ID,
+       AVG(SALARY)
+FROM
+       EMPLOYEES
+GROUP BY
+       DEPARTMENT_ID;
 
 -- Consultas INCORRETAS utilizando Funções de Grupo
-SELECT department_id, MAX(salary)
-FROM   employees
-WHERE  MAX(salary) > 10000
-GROUP BY department_id;
+SELECT
+       DEPARTMENT_ID,
+       MAX(SALARY)
+FROM
+       EMPLOYEES
+WHERE
+       MAX(SALARY) > 10000
+GROUP BY
+       DEPARTMENT_ID;
 
 -- Corrigindo consultas incorretas utilizando Funções de Grupo
 
@@ -346,48 +644,84 @@ SELECT Exibir colunas ou expressÕes
 ORDER BY ordenando pelo critério definido
 */
 
-SELECT department_id, MAX(salary)
-FROM   employees
-GROUP BY department_id;
-HAVING MAX(salary)>=10000;
+SELECT
+       DEPARTMENT_ID,
+       MAX(SALARY)
+FROM
+       EMPLOYEES
+GROUP BY
+       DEPARTMENT_ID;
 
-SELECT job_id, SUM(salary) TOTAL
-FROM   employees
-WHERE  job_id <> 'SA_REP'
-GROUP BY job_id
-HAVING   SUM(salary) > 15000
-ORDER BY SUM(salary);
+HAVING MAX(SALARY)>=10000;
+
+SELECT
+       JOB_ID,
+       SUM(SALARY) TOTAL
+FROM
+       EMPLOYEES
+WHERE
+       JOB_ID <> 'SA_REP'
+GROUP BY
+       JOB_ID
+HAVING
+       SUM(SALARY) > 15000
+ORDER BY
+       SUM(SALARY);
 
 -- Aninhando Funções de Grupo
-SELECT MAX(AVG(salary))
-FROM employees
-GROUP BY department_id;
+SELECT
+       MAX(AVG(SALARY))
+FROM
+       EMPLOYEES
+GROUP BY
+       DEPARTMENT_ID;
 
-SELECT department_id, ROUND(AVG(salary), 2)
-FROM employees
-GROUP BY department_id
-ORDER BY AVG(SALARY) DESC;
+SELECT
+       DEPARTMENT_ID,
+       ROUND(AVG(SALARY),
+       2)
+FROM
+       EMPLOYEES
+GROUP BY
+       DEPARTMENT_ID
+ORDER BY
+       AVG(SALARY) DESC;
 
-
-SELECT department_id, AVG(salary)
-FROM   employees
-GROUP BY department_id;
-
+SELECT
+       DEPARTMENT_ID,
+       AVG(SALARY)
+FROM
+       EMPLOYEES
+GROUP BY
+       DEPARTMENT_ID;
 
 -- ********* JOIN *********
 
--- Exibindo dados a partir de multiplas TABELAS JOINS 
+-- Exibindo dados a partir de multiplas TABELAS JOINS
 
----- Prefixando Nomes de Coluna de Tabela 
-SELECT employees.employee_id, employees.last_name, 
-       employees.department_id, departments.department_name
-FROM   employees JOIN departments 
-       ON (employees.department_id = departments.department_id);
+---- Prefixando Nomes de Coluna de Tabela
+SELECT
+       EMPLOYEES.EMPLOYEE_ID,
+       EMPLOYEES.LAST_NAME,
+       EMPLOYEES.DEPARTMENT_ID,
+       DEPARTMENTS.DEPARTMENT_NAME
+FROM
+       EMPLOYEES
+       JOIN DEPARTMENTS
+       ON (EMPLOYEES.DEPARTMENT_ID = DEPARTMENTS.DEPARTMENT_ID);
 
 -- Utilizando Alias de Tabela
-SELECT e.employee_id, e.last_name, e.department_id, d.department_name
-FROM   employees e JOIN departments d
-ON     (e.department_id = d.department_id); -- IMPORTANTE ON FAZ A LIGAÇÃO ENTRE AS TABELAS PELO id DE REFERENCIAS 
+SELECT
+       E.EMPLOYEE_ID,
+       E.LAST_NAME,
+       E.DEPARTMENT_ID,
+       D.DEPARTMENT_NAME
+FROM
+       EMPLOYEES   E
+       JOIN DEPARTMENTS D
+       ON (E.DEPARTMENT_ID = D.DEPARTMENT_ID);
+
+-- IMPORTANTE ON FAZ A LIGAÇÃO ENTRE AS TABELAS PELO id DE REFERENCIAS
 
 /*
 -- Utilizando Natural Joins  POUCO USADA PELOS DESENVOLVEDORES
@@ -407,193 +741,359 @@ ON (e.department_id = d.department_id);
 */
 
 -- Joins utilizando várias tabelas com a Cláusula ON
-SELECT e.employee_id, j.job_title, d.department_name, l.city, l.state_province, l.country_id
-FROM employees e
-  JOIN jobs        j ON (e.job_id = j.job_id)
-  JOIN departments d ON (e.department_id = d.department_id)
-  JOIN locations   l ON (d.location_id = l.location_id)
-ORDER BY e.employee_id;
-  
+SELECT
+       E.EMPLOYEE_ID,
+       J.JOB_TITLE,
+       D.DEPARTMENT_NAME,
+       L.CITY,
+       L.STATE_PROVINCE,
+       L.COUNTRY_ID
+FROM
+       EMPLOYEES   E
+       JOIN JOBS J
+       ON (E.JOB_ID = J.JOB_ID) JOIN DEPARTMENTS D
+       ON (E.DEPARTMENT_ID = D.DEPARTMENT_ID)
+       JOIN LOCATIONS L
+       ON (D.LOCATION_ID = L.LOCATION_ID)
+ORDER BY
+       E.EMPLOYEE_ID;
+
 -- Incluindo condições adicionais a condição de Join na cláusula WHERE
-SELECT e.employee_id, e.last_name, e.salary, e.department_id, d.department_name
-FROM employees e JOIN departments d
-ON  (e.department_id = d.department_id)
-WHERE (e.salary BETWEEN 10000 AND 15000);
+SELECT
+       E.EMPLOYEE_ID,
+       E.LAST_NAME,
+       E.SALARY,
+       E.DEPARTMENT_ID,
+       D.DEPARTMENT_NAME
+FROM
+       EMPLOYEES   E
+       JOIN DEPARTMENTS D
+       ON (E.DEPARTMENT_ID = D.DEPARTMENT_ID)
+WHERE
+       (E.SALARY BETWEEN 10000
+       AND 15000);
 
 -- Incluindo condições adicionais a condição de Join utilizando AND  -- MENOS USADA E ELEGANTE
-SELECT e.employee_id, e.last_name, e.salary, e.department_id, d.department_name
-FROM employees e JOIN departments d
-ON (e.department_id = d.department_id) AND
-   (e.salary BETWEEN 10000 AND 15000);
-   
--- Self Join Utilizando a Cláusula ON
-SELECT empregado.employee_id "Id empregado", 
-       empregado.last_name "Sobrenome empregado",
-       gerente.employee_id "Id gerente", 
-       gerente.last_name "Sobrenome gerente"
-FROM employees empregado 
-JOIN employees gerente
-ON (empregado.manager_id = gerente.employee_id)
-ORDER BY empregado.employee_id;
+SELECT
+       E.EMPLOYEE_ID,
+       E.LAST_NAME,
+       E.SALARY,
+       E.DEPARTMENT_ID,
+       D.DEPARTMENT_NAME
+FROM
+       EMPLOYEES   E
+       JOIN DEPARTMENTS D
+       ON (E.DEPARTMENT_ID = D.DEPARTMENT_ID)
+       AND (E.SALARY BETWEEN 10000
+       AND 15000);
 
+-- Self Join Utilizando a Cláusula ON
+SELECT
+       EMPREGADO.EMPLOYEE_ID "Id empregado",
+       EMPREGADO.LAST_NAME   "Sobrenome empregado",
+       GERENTE.EMPLOYEE_ID   "Id gerente",
+       GERENTE.LAST_NAME     "Sobrenome gerente"
+FROM
+       EMPLOYEES EMPREGADO
+       JOIN EMPLOYEES GERENTE
+       ON (EMPREGADO.MANAGER_ID = GERENTE.EMPLOYEE_ID)
+ORDER BY
+       EMPREGADO.EMPLOYEE_ID;
 
 -- Nonequijoins
 
 -- Removendo a Tabela JOB_GRADES
-DROP TABLE job_grades;
+DROP TABLE JOB_GRADES;
 
 -- Criando a tabela JOB_GRADES
-CREATE TABLE job_grades (
- grade_level  VARCHAR2 (2) NOT NULL,
- lowest_sal    NUMBER (11,2),
- highest_sal   NUMBER (11,2),
- CONSTRAINT job_grades_pk PRIMARY KEY (grade_level));
- 
+CREATE TABLE JOB_GRADES (
+       GRADE_LEVEL VARCHAR2 (2) NOT NULL,
+       LOWEST_SAL NUMBER (11, 2),
+       HIGHEST_SAL NUMBER (11, 2),
+       CONSTRAINT JOB_GRADES_PK PRIMARY KEY (GRADE_LEVEL)
+);
+
 -- Inserindo linhas na tabela JOB_GRADES
-INSERT INTO job_grades VALUES ('A',1000,2999); 
-INSERT INTO job_grades VALUES ('B',3000,5999);
-INSERT INTO job_grades VALUES ('C',6000,9999);
-INSERT INTO job_grades VALUES ('D',10000,14999);
-INSERT INTO job_grades VALUES ('E',15000,24999);
-INSERT INTO job_grades VALUES ('F',25000,40000);
+INSERT INTO JOB_GRADES VALUES (
+       'A',
+       1000,
+       2999
+);
+
+INSERT INTO JOB_GRADES VALUES (
+       'B',
+       3000,
+       5999
+);
+
+INSERT INTO JOB_GRADES VALUES (
+       'C',
+       6000,
+       9999
+);
+
+INSERT INTO JOB_GRADES VALUES (
+       'D',
+       10000,
+       14999
+);
+
+INSERT INTO JOB_GRADES VALUES (
+       'E',
+       15000,
+       24999
+);
+
+INSERT INTO JOB_GRADES VALUES (
+       'F',
+       25000,
+       40000
+);
 
 -- Efetivando a Transação
 COMMIT;
 
-SELECT *
-FROM   job_grades;
+SELECT
+       *
+FROM
+       JOB_GRADES;
 
--- Nonequijoins 
+-- Nonequijoins
 /*Realiza um JOIN quando a condição não é uma IGUALDADE*/
 
-SELECT   e.employee_id, e.salary, j.grade_level, j.lowest_sal, j.highest_sal
-FROM     employees e 
-  JOIN   job_grades j
-     ON  NVL(e.salary,0) BETWEEN j.lowest_sal AND j.highest_sal
-ORDER BY e.salary;
+SELECT
+       E.EMPLOYEE_ID,
+       E.SALARY,
+       J.GRADE_LEVEL,
+       J.LOWEST_SAL,
+       J.HIGHEST_SAL
+FROM
+       EMPLOYEES  E
+       JOIN JOB_GRADES J
+       ON NVL(E.SALARY, 0) BETWEEN J.LOWEST_SAL
+       AND J.HIGHEST_SAL
+ORDER BY
+       E.SALARY;
 
-SELECT   e.employee_id, e.salary, j.grade_level, j.lowest_sal, j.highest_sal
-FROM     employees e 
-  JOIN   job_grades j
-     ON  NVL(e.salary,0) >= j.lowest_sal AND 
-         NVL(e.salary,0) <= j.highest_sal
-ORDER BY e.salary;
+SELECT
+       E.EMPLOYEE_ID,
+       E.SALARY,
+       J.GRADE_LEVEL,
+       J.LOWEST_SAL,
+       J.HIGHEST_SAL
+FROM
+       EMPLOYEES  E
+       JOIN JOB_GRADES J
+       ON NVL(E.SALARY, 0) >= J.LOWEST_SAL
+       AND NVL(E.SALARY, 0) <= J.HIGHEST_SAL
+ORDER BY
+       E.SALARY;
 
---JOIN 
+--JOIN
 --TRAZ DADOS QUE CONTEM NAS DUAS TABELAS
-SELECT e.first_name, e.last_name, d.department_id, d.department_name
-FROM employees e JOIN departments d
-     ON (e.department_id = d.department_id) 
-ORDER BY d.department_id;
+SELECT
+       E.FIRST_NAME,
+       E.LAST_NAME,
+       D.DEPARTMENT_ID,
+       D.DEPARTMENT_NAME
+FROM
+       EMPLOYEES   E
+       JOIN DEPARTMENTS D
+       ON (E.DEPARTMENT_ID = D.DEPARTMENT_ID)
+ORDER BY
+       D.DEPARTMENT_ID;
 
 --LEFT OUTER JOIN
 /*TRAZ OS DADOS QUE SATISFAÇA AS CONDIÇÕES DAS DUAS TABELAS E 
 TRAZ TBM OS DADOS DA TABELA DA ESQUERDA, NULL 
 OU QUE NÃO TENHA LIGAÇÃO COM A ATABELA DA DIREIRTA*/
-SELECT e.first_name, e.last_name, d.department_id, d.department_name
-FROM employees e LEFT OUTER JOIN departments d
-     ON (e.department_id = d.department_id) 
-ORDER BY d.department_id;
+SELECT
+       E.FIRST_NAME,
+       E.LAST_NAME,
+       D.DEPARTMENT_ID,
+       D.DEPARTMENT_NAME
+FROM
+       EMPLOYEES   E
+       LEFT OUTER JOIN DEPARTMENTS D
+       ON (E.DEPARTMENT_ID = D.DEPARTMENT_ID)
+ORDER BY
+       D.DEPARTMENT_ID;
 
-
---RIGHT OUTER JOIN 
+--RIGHT OUTER JOIN
 /*TRAZ OS DADOS QUE SATISFAÇA AS CONDIÇÕES DAS
 DUAS TABELAS E TRAZ OS DADOS DA TABELA DA DIREITA QUE NÃO 
 TEM LIGAÇÃO OU É NULL*/
-SELECT d.department_id, d.department_name, e.first_name, e.last_name
-FROM employees e RIGHT OUTER JOIN departments d
-     ON (e.department_id = d.department_id) 
-ORDER BY d.department_id;
+SELECT
+       D.DEPARTMENT_ID,
+       D.DEPARTMENT_NAME,
+       E.FIRST_NAME,
+       E.LAST_NAME
+FROM
+       EMPLOYEES   E
+       RIGHT OUTER JOIN DEPARTMENTS D
+       ON (E.DEPARTMENT_ID = D.DEPARTMENT_ID)
+ORDER BY
+       D.DEPARTMENT_ID;
 
--- FULL OUTER JOIN  
+-- FULL OUTER JOIN
 /*TRAZ OS DADOS QUE SATISFAÇA A LIGAÇÃO E TRAZ OS DADOS DAS 
 DUAS TABELAS DA ESQUERDA E DA DIREITA*/
-SELECT d.department_id, d.department_name, e.first_name, e.last_name
-FROM   employees e FULL OUTER JOIN departments d
-     ON (e.department_id = d.department_id) 
-ORDER BY d.department_id;
+SELECT
+       D.DEPARTMENT_ID,
+       D.DEPARTMENT_NAME,
+       E.FIRST_NAME,
+       E.LAST_NAME
+FROM
+       EMPLOYEES   E
+       FULL OUTER JOIN DEPARTMENTS D
+       ON (E.DEPARTMENT_ID = D.DEPARTMENT_ID)
+ORDER BY
+       D.DEPARTMENT_ID;
 
 -- CROSS JOIN
 /* Faz ligação de todos os dados de 
 uma tabela com outra.
 Raramente usada*/
-SELECT last_name, department_name
-FROM employees
-CROSS JOIN departments;
-
+SELECT
+       LAST_NAME,
+       DEPARTMENT_NAME
+FROM
+       EMPLOYEES CROSS
+       JOIN DEPARTMENTS;
 
 -- *********** JOINS SINTAXE ORACLE *********** --
 -- EquiJoin utilizando Sintaxe Oracle
-SELECT e.employee_id, e.last_name, e.department_id, d.department_id, d.location_id
-FROM   employees e,
-       departments d
-WHERE  (e.department_id = d.department_id)
-ORDER BY e.department_id;
+SELECT
+       E.EMPLOYEE_ID,
+       E.LAST_NAME,
+       E.DEPARTMENT_ID,
+       D.DEPARTMENT_ID,
+       D.LOCATION_ID
+FROM
+       EMPLOYEES   E,
+       DEPARTMENTS D
+WHERE
+       (E.DEPARTMENT_ID = D.DEPARTMENT_ID)
+ORDER BY
+       E.DEPARTMENT_ID;
 
 -- Joins entre várias tabelas utilizando Sintaxe Oracle
-SELECT e.employee_id, j.job_title, d.department_name, l.city, l.state_province, l.country_id
-FROM   employees e,
-       jobs j,
-       departments d, 
-       locations l
-WHERE (e.job_id = j.job_id)               AND
-      (d.department_id = e.department_id) AND
-      (d.location_id = l.location_id)
-ORDER BY e.employee_id;
+SELECT
+       E.EMPLOYEE_ID,
+       J.JOB_TITLE,
+       D.DEPARTMENT_NAME,
+       L.CITY,
+       L.STATE_PROVINCE,
+       L.COUNTRY_ID
+FROM
+       EMPLOYEES   E,
+       JOBS        J,
+       DEPARTMENTS D,
+       LOCATIONS   L
+WHERE
+       (E.JOB_ID = J.JOB_ID)
+       AND (D.DEPARTMENT_ID = E.DEPARTMENT_ID)
+       AND (D.LOCATION_ID = L.LOCATION_ID)
+ORDER BY
+       E.EMPLOYEE_ID;
 
 -- Incluindo condições adicionais a condição de Join utilizando AND
-SELECT e.employee_id, e.salary, j.job_title, 
-       d.department_name, l.city, l.state_province, l.country_id
-FROM   employees e,
-       jobs j,
-       departments d, 
-       locations l
-WHERE (e.job_id = j.job_id)  AND
-      (d.department_id = e.department_id) AND
-      (d.location_id = l.location_id)     AND
-      (e.salary >= 1000)
-ORDER BY e.employee_id;
-
+SELECT
+       E.EMPLOYEE_ID,
+       E.SALARY,
+       J.JOB_TITLE,
+       D.DEPARTMENT_NAME,
+       L.CITY,
+       L.STATE_PROVINCE,
+       L.COUNTRY_ID
+FROM
+       EMPLOYEES   E,
+       JOBS        J,
+       DEPARTMENTS D,
+       LOCATIONS   L
+WHERE
+       (E.JOB_ID = J.JOB_ID)
+       AND (D.DEPARTMENT_ID = E.DEPARTMENT_ID)
+       AND (D.LOCATION_ID = L.LOCATION_ID)
+       AND (E.SALARY >= 1000)
+ORDER BY
+       E.EMPLOYEE_ID;
 
 -- NonequiJoin Utilizando Sintaxe Oracle
-SELECT e.employee_id, e.salary, j.grade_level, j.lowest_sal, j.highest_sal
-FROM   employees e,
-       job_grades j
-WHERE  NVL(e.salary,0) BETWEEN j.lowest_sal AND j.highest_sal
-ORDER BY e.salary;
+SELECT
+       E.EMPLOYEE_ID,
+       E.SALARY,
+       J.GRADE_LEVEL,
+       J.LOWEST_SAL,
+       J.HIGHEST_SAL
+FROM
+       EMPLOYEES  E,
+       JOB_GRADES J
+WHERE
+       NVL(E.SALARY,
+       0) BETWEEN J.LOWEST_SAL
+       AND J.HIGHEST_SAL
+ORDER BY
+       E.SALARY;
 
 -- Outer Join Utilizando Sintaxe Oracle
 --LEFT OUTER JOIN
-SELECT e.first_name, e.last_name, d.department_id, d.department_name
-FROM   employees e,
-       departments d
-WHERE  e.department_id = d.department_id(+) 
-ORDER BY e.department_id;
+SELECT
+       E.FIRST_NAME,
+       E.LAST_NAME,
+       D.DEPARTMENT_ID,
+       D.DEPARTMENT_NAME
+FROM
+       EMPLOYEES   E,
+       DEPARTMENTS D
+WHERE
+       E.DEPARTMENT_ID = D.DEPARTMENT_ID(+)
+ORDER BY
+       E.DEPARTMENT_ID;
 
 -- RIGHT OUTER JOIN
-SELECT e.first_name, e.last_name, d.department_id, d.department_name
-FROM   employees e,
-       departments d
-WHERE  e.department_id(+) = d.department_id 
-ORDER BY e.first_name;
+SELECT
+       E.FIRST_NAME,
+       E.LAST_NAME,
+       D.DEPARTMENT_ID,
+       D.DEPARTMENT_NAME
+FROM
+       EMPLOYEES   E,
+       DEPARTMENTS D
+WHERE
+       E.DEPARTMENT_ID(+) = D.DEPARTMENT_ID
+ORDER BY
+       E.FIRST_NAME;
 
 -- Self-join Utilizando Sintaxe Oracle
-SELECT empregado.employee_id "Id empregado", empregado.last_name "Sobrenome empregado",
-       gerente.employee_id "Id gerente", gerente.last_name "Sobrenome gerente"
-FROM   employees empregado,
-       employees gerente
-WHERE (empregado.manager_id = gerente.employee_id)
-ORDER BY empregado.employee_id;
+SELECT
+       EMPREGADO.EMPLOYEE_ID "Id empregado",
+       EMPREGADO.LAST_NAME   "Sobrenome empregado",
+       GERENTE.EMPLOYEE_ID   "Id gerente",
+       GERENTE.LAST_NAME     "Sobrenome gerente"
+FROM
+       EMPLOYEES EMPREGADO,
+       EMPLOYEES GERENTE
+WHERE
+       (EMPREGADO.MANAGER_ID = GERENTE.EMPLOYEE_ID)
+ORDER BY
+       EMPREGADO.EMPLOYEE_ID;
 
-DESC employees
+DESC EMPLOYEES
 
 -- Outer Join e Self Join Utilizando Sintaxe Oracle
-SELECT empregado.employee_id "Id empregado", empregado.last_name "Sobrenome empregado",
-       gerente.employee_id "Id gerente", gerente.last_name "Sobrenome gerente"
-FROM   employees empregado,
-       employees gerente
-WHERE (empregado.manager_id = gerente.employee_id(+))
-ORDER BY empregado.employee_id;
+SELECT
+       EMPREGADO.EMPLOYEE_ID "Id empregado",
+       EMPREGADO.LAST_NAME   "Sobrenome empregado",
+       GERENTE.EMPLOYEE_ID   "Id gerente",
+       GERENTE.LAST_NAME     "Sobrenome gerente"
+FROM
+       EMPLOYEES EMPREGADO,
+       EMPLOYEES GERENTE
+WHERE
+       (EMPREGADO.MANAGER_ID = GERENTE.EMPLOYEE_ID(+))
+ORDER BY
+       EMPREGADO.EMPLOYEE_ID;
 
 /* 
 ****** POUCO USADO ******
@@ -606,3 +1106,6 @@ SELECT e.employee_id, e.first_name, e.last_name, j.job_id, j.job_title
 FROM   employees e, jobs j
 WHERE  e.job_id = j.job_id;
 */
+
+
+--********** SUB-CONSULTAS **********--
