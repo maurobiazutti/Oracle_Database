@@ -386,6 +386,7 @@ SELECT e.employee_id, e.last_name, e.department_id, d.department_name
 FROM   employees e JOIN departments d
 ON     (e.department_id = d.department_id); -- IMPORTANTE ON FAZ A LIGAÇÃO ENTRE AS TABELAS PELO id DE REFERENCIAS 
 
+/*
 -- Utilizando Natural Joins  POUCO USADA PELOS DESENVOLVEDORES
 SELECT  department_id, department_name, location_id, city
 FROM    departments
@@ -400,6 +401,7 @@ JOIN departments d USING (department_id);
 SELECT e.employee_id, e.last_name, e.department_id, d.location_id
 FROM employees e JOIN departments d
 ON (e.department_id = d.department_id);
+*/
 
 -- Joins utilizando várias tabelas com a Cláusula ON
 SELECT e.employee_id, j.job_title, d.department_name, l.city, l.state_province, l.country_id
