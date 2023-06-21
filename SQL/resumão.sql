@@ -106,6 +106,7 @@ WHERE
        OR JOB_ID = 'IT_PROG';
 
 --WHERE NOT
+--Vai Trazer todos que não estão na lista.
 SELECT
        EMPLOYEE_ID,
        LAST_NAME,
@@ -118,10 +119,9 @@ WHERE
        'FI_ACCOUNT',
        'SA_REP');
 
---Vai Trazer todos que não estão na lista.
-
 
 --ORDER BY
+--Ordem Crescente
 SELECT
        LAST_NAME,
        HIRE_DATE
@@ -130,8 +130,8 @@ FROM
 ORDER BY
        HIRE_DATE;
 
---Ordem Crescente
 
+-- Ordem Descendente
 SELECT
        LAST_NAME,
        HIRE_DATE
@@ -140,8 +140,8 @@ FROM
 ORDER BY
        HIRE_DATE DESC;
 
--- Ordem Descendente
 
+--TBM pode ser referenciado por ALIAS
 SELECT
        LAST_NAME,
        SALARY*12 SALARIO_ANUAL
@@ -150,8 +150,8 @@ FROM
 ORDER BY
        SALARIO_ANUAL;
 
---TBM pode ser referenciado por ALIAS
 
+--Pode ser ordenado por duas colunas
 SELECT
        LAST_NAME,
        DEPARTMENT_ID,
@@ -162,10 +162,10 @@ ORDER BY
        DEPARTMENT_ID,
        SALARY DESC;
 
---Pode ser ordenado por duas colunas
 
 
 --Variavel de Substituição
+--Se for string ou data tem q esta entre ' '
 SELECT
        LAST_NAME,
        DEPARTMENT_ID,
@@ -176,8 +176,8 @@ FROM
 WHERE
        JOB_ID = '&job_id';
 
---Se for string ou data tem q esta entre ' '
 
+-- Para Numero
 SELECT
        LAST_NAME,
        DEPARTMENT_ID,
@@ -188,7 +188,6 @@ FROM
 WHERE
        DEPARTMENT_ID = &DEPARTMENT_ID;
 
--- Para Numero
 
 
 /*FUNÇÕES SINGLE-ROW
@@ -1179,3 +1178,26 @@ WHERE
         WHERE
             last_name = 'Suzuki'
     );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
