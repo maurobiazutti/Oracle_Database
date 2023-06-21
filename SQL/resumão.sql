@@ -1180,6 +1180,128 @@ WHERE
     );
 
 
+-- Sub-Consultas Multiple-row
+
+/*
+IN -> Igual a qualquer membro da lista.
+
+ANY -> Deve ser precedido por =, !=, >, <, <=, >=. 
+Compara um valor para qualquer valor da lista retorda pela Sub_consulta. 
+Retorna FALSE se a Sub consulta retorna nenhuma linha.
+
+ALL -> Deve ser precedido por =, !=, >, <, <=, >=.
+Compara um valor para todos os valores na lista retornada pela Sub-consulta.
+Retorna TRUE se a Sub-consulta retorna nenhuma linha.
+*/
+
+--IN
+SELECT
+    employee_id,
+    first_name,
+    department_id,
+    salary
+FROM
+    employees
+WHERE
+    salary IN (
+        SELECT
+            trunc(AVG(nvl(salary, 0)),
+                  2)
+        FROM
+            employees
+        GROUP BY
+            department_id
+    );
+
+
+ 
+-- Utilizando operador NOT IN em Sub-consultas Multiple-Row
+SELECT
+    employee_id,
+    first_name,
+    last_name,
+    salary
+FROM
+    employees
+WHERE
+    salary NOT IN (
+        SELECT
+            AVG(nvl(salary, 0))
+        FROM
+            employees
+        GROUP BY
+            department_id
+    );
+                 
+
+-- Utilizando operador ANY em Sub-consultas Multiple-Row
+SELECT
+    employee_id,
+    last_name,
+    job_id,
+    salary
+FROM
+    employees
+WHERE
+    salary < ANY (
+        SELECT
+            salary
+        FROM
+            employees
+        WHERE
+            job_id = 'IT_PROG'
+    );
+
+
+-- Utilizando operador ALL em Sub-consultas Multiple-Row
+SELECT
+    employee_id,
+    last_name,
+    job_id,
+    salary
+FROM
+    employees
+WHERE
+    salary < ALL (
+        SELECT
+            salary
+        FROM
+            employees
+        WHERE
+            job_id = 'IT_PROG'
+    );
+                    
+
+-- Cuidados com Valores Nulos em uma Sub-consulta com Operador IN
+SELECT
+    emp.employee_id,
+    emp.last_name
+FROM
+    employees emp
+WHERE
+    emp.employee_id IN (
+        SELECT
+            mgr.manager_id
+        FROM
+            employees mgr
+    );
+
+
+-- Cuidados com Valores Nulos em uma Sub-consulta com Operador NOT IN
+SELECT
+    emp.employee_id,
+    emp.last_name
+FROM
+    employees emp
+WHERE
+    emp.employee_id NOT IN (
+        SELECT
+            mgr.manager_id
+        FROM
+            employees mgr
+    );
+
+
 
 
 
