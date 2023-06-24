@@ -1341,6 +1341,14 @@ FROM      employees e2
 WHERE     e2.department_id = 60;
 
 
+-- Utilizando Sub-consultas Multiple-Column 
+
+SELECT e1.employee_id, e1.first_name, e1.job_id, e1.salary
+FROM   employees e1
+WHERE (e1.job_id, e1.salary) IN (SELECT   e2.job_id, MAX(e2.salary)
+                                 FROM     employees e2
+                                 GROUP by e2.job_id);
+								 
 
 
 
