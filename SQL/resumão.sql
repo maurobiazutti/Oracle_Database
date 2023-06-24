@@ -119,7 +119,6 @@ WHERE
        'FI_ACCOUNT',
        'SA_REP');
 
-
 --ORDER BY
 --Ordem Crescente
 SELECT
@@ -130,7 +129,6 @@ FROM
 ORDER BY
        HIRE_DATE;
 
-
 -- Ordem Descendente
 SELECT
        LAST_NAME,
@@ -140,7 +138,6 @@ FROM
 ORDER BY
        HIRE_DATE DESC;
 
-
 --TBM pode ser referenciado por ALIAS
 SELECT
        LAST_NAME,
@@ -149,7 +146,6 @@ FROM
        EMPLOYEES
 ORDER BY
        SALARIO_ANUAL;
-
 
 --Pode ser ordenado por duas colunas
 SELECT
@@ -161,8 +157,6 @@ FROM
 ORDER BY
        DEPARTMENT_ID,
        SALARY DESC;
-
-
 
 --Variavel de Substituição
 --Se for string ou data tem q esta entre ' '
@@ -176,7 +170,6 @@ FROM
 WHERE
        JOB_ID = '&job_id';
 
-
 -- Para Numero
 SELECT
        LAST_NAME,
@@ -187,8 +180,6 @@ FROM
        EMPLOYEES
 WHERE
        DEPARTMENT_ID = &DEPARTMENT_ID;
-
-
 
 /*FUNÇÕES SINGLE-ROW
 
@@ -1114,71 +1105,72 @@ WHERE  e.job_id = j.job_id;
 /*Quais empregados possuem o salario maior do
 que o a média de salarios?*/
 SELECT
-    first_name,
-    last_name,
-    job_id,
-    salary
+       FIRST_NAME,
+       LAST_NAME,
+       JOB_ID,
+       SALARY
 FROM
-    employees
+       EMPLOYEES
 WHERE
-    salary > (
-        SELECT
-            AVG(nvl(salary, 0))
-        FROM
-            employees
-    );              
+       SALARY > (
+              SELECT
+                     AVG(NVL(SALARY,
+                     0))
+              FROM
+                     EMPLOYEES
+       );
 
 -- Utilizando Sub-consultas na Cláusula HAVING
--- Qual o id do departamento e o maior salario menor que a media? 
+-- Qual o id do departamento e o maior salario menor que a media?
 SELECT
-    e1.department_id,
-    MAX(e1.salary)
+       E1.DEPARTMENT_ID,
+       MAX(E1.SALARY)
 FROM
-    employees e1
+       EMPLOYEES E1
 GROUP BY
-    e1.department_id
+       E1.DEPARTMENT_ID
 HAVING
-    MAX(salary) < (
-        SELECT
-            AVG(e2.salary)
-        FROM
-            employees e2
-    );
-                                                  
+       MAX(SALARY) < (
+              SELECT
+                     AVG(E2.SALARY)
+              FROM
+                     EMPLOYEES E2
+       );
+
 -- Erros utilizando Sub-consultas Single-Row
 SELECT
-    employee_id,
-    first_name,
-    last_name
+       EMPLOYEE_ID,
+       FIRST_NAME,
+       LAST_NAME
 FROM
-    employees
+       EMPLOYEES
 WHERE
-    salary = (
-        SELECT
-            AVG(nvl(salary, 0))
-        FROM
-            employees
-        GROUP BY
-            department_id
-    );
+       SALARY = (
+              SELECT
+                     AVG(NVL(SALARY,
+                     0))
+              FROM
+                     EMPLOYEES
+              GROUP BY
+                     DEPARTMENT_ID
+       );
 
 -- O que ocorre quando a Sub-Consulta retorna nenhuma linha? NULL
 SELECT
-    employee_id,
-    first_name,
-    last_name
+       EMPLOYEE_ID,
+       FIRST_NAME,
+       LAST_NAME
 FROM
-    employees
+       EMPLOYEES
 WHERE
-    last_name = (
-        SELECT
-            last_name
-        FROM
-            employees
-        WHERE
-            last_name = 'Suzuki'
-    );
-
+       LAST_NAME = (
+              SELECT
+                     LAST_NAME
+              FROM
+                     EMPLOYEES
+              WHERE
+                     LAST_NAME = 'Suzuki'
+       );
 
 -- Sub-Consultas Multiple-row
 
@@ -1196,172 +1188,211 @@ Retorna TRUE se a Sub-consulta retorna nenhuma linha.
 
 --IN
 SELECT
-    employee_id,
-    first_name,
-    department_id,
-    salary
+       EMPLOYEE_ID,
+       FIRST_NAME,
+       DEPARTMENT_ID,
+       SALARY
 FROM
-    employees
+       EMPLOYEES
 WHERE
-    salary IN (
-        SELECT
-            trunc(AVG(nvl(salary, 0)),
-                  2)
-        FROM
-            employees
-        GROUP BY
-            department_id
-    );
+       SALARY IN (
+              SELECT
+                     TRUNC(AVG(NVL(SALARY,
+                     0)),
+                     2)
+              FROM
+                     EMPLOYEES
+              GROUP BY
+                     DEPARTMENT_ID
+       );
+       
 
-
- 
 -- Utilizando operador NOT IN em Sub-consultas Multiple-Row
 SELECT
-    employee_id,
-    first_name,
-    last_name,
-    salary
+       EMPLOYEE_ID,
+       FIRST_NAME,
+       LAST_NAME,
+       SALARY
 FROM
-    employees
+       EMPLOYEES
 WHERE
-    salary NOT IN (
-        SELECT
-            AVG(nvl(salary, 0))
-        FROM
-            employees
-        GROUP BY
-            department_id
-    );
-                 
+       SALARY NOT IN (
+              SELECT
+                     AVG(NVL(SALARY,
+                     0))
+              FROM
+                     EMPLOYEES
+              GROUP BY
+                     DEPARTMENT_ID
+       );
+
 
 -- Utilizando operador ANY em Sub-consultas Multiple-Row
 SELECT
-    employee_id,
-    last_name,
-    job_id,
-    salary
+       EMPLOYEE_ID,
+       LAST_NAME,
+       JOB_ID,
+       SALARY
 FROM
-    employees
+       EMPLOYEES
 WHERE
-    salary < ANY (
-        SELECT
-            salary
-        FROM
-            employees
-        WHERE
-            job_id = 'IT_PROG'
-    );
+       SALARY < ANY (
+              SELECT
+                     SALARY
+              FROM
+                     EMPLOYEES
+              WHERE
+                     JOB_ID = 'IT_PROG'
+       );
 
 
 -- Utilizando operador ALL em Sub-consultas Multiple-Row
 SELECT
-    employee_id,
-    last_name,
-    job_id,
-    salary
+       EMPLOYEE_ID,
+       LAST_NAME,
+       JOB_ID,
+       SALARY
 FROM
-    employees
+       EMPLOYEES
 WHERE
-    salary < ALL (
-        SELECT
-            salary
-        FROM
-            employees
-        WHERE
-            job_id = 'IT_PROG'
-    );
-                    
+       SALARY < ALL (
+              SELECT
+                     SALARY
+              FROM
+                     EMPLOYEES
+              WHERE
+                     JOB_ID = 'IT_PROG'
+       );
 
 -- Cuidados com Valores Nulos em uma Sub-consulta com Operador IN
 SELECT
-    emp.employee_id,
-    emp.last_name
+       EMP.EMPLOYEE_ID,
+       EMP.LAST_NAME
 FROM
-    employees emp
+       EMPLOYEES EMP
 WHERE
-    emp.employee_id IN (
-        SELECT
-            mgr.manager_id
-        FROM
-            employees mgr
-    );
-
+       EMP.EMPLOYEE_ID IN (
+              SELECT
+                     MGR.MANAGER_ID
+              FROM
+                     EMPLOYEES MGR
+       );
 
 -- Cuidados com Valores Nulos em uma Sub-consulta com Operador NOT IN
 SELECT
-    emp.employee_id,
-    emp.last_name
+       EMP.EMPLOYEE_ID,
+       EMP.LAST_NAME
 FROM
-    employees emp
+       EMPLOYEES EMP
 WHERE
-    emp.employee_id NOT IN (
-        SELECT
-            mgr.manager_id
-        FROM
-            employees mgr
-    );
+       EMP.EMPLOYEE_ID NOT IN (
+              SELECT
+                     MGR.MANAGER_ID
+              FROM
+                     EMPLOYEES MGR
+       );
 
 
 -- Utilizando operador EXISTS
+SELECT
+       D.DEPARTMENT_ID,
+       D.DEPARTMENT_NAME
+FROM
+       DEPARTMENTS D
+WHERE
+       EXISTS (
+              SELECT
+                     E.DEPARTMENT_ID
+              FROM
+                     EMPLOYEES   E
+              WHERE
+                     D.DEPARTMENT_ID = E.DEPARTMENT_ID
+       );
 
-SELECT d.department_id, d.department_name
-FROM   departments d
-WHERE  EXISTS
-             (SELECT e.department_id
-               FROM   employees e
-               WHERE d.department_id = 
-                             e.department_id);
 
 -- Utilizando operador EXISTS
+SELECT
+       D.DEPARTMENT_ID,
+       D.DEPARTMENT_NAME
+FROM
+       DEPARTMENTS D
+WHERE
+       EXISTS (
+              SELECT
+                     E.DEPARTMENT_ID
+              FROM
+                     EMPLOYEES   E
+              WHERE
+                     D.DEPARTMENT_ID = E.DEPARTMENT_ID
+       );
 
-SELECT d.department_id, d.department_name
-FROM   departments d
-WHERE  EXISTS (SELECT e.department_id
-               FROM employees e
-               WHERE d.department_id = e.department_id);
+
 
 -- Utilizando operador NOT EXISTS
+SELECT
+       D.DEPARTMENT_ID,
+       D.DEPARTMENT_NAME
+FROM
+       DEPARTMENTS D
+WHERE
+       NOT EXISTS (
+              SELECT
+                     E.DEPARTMENT_ID
+              FROM
+                     EMPLOYEES   E
+              WHERE
+                     D.DEPARTMENT_ID = E.DEPARTMENT_ID
+       );
 
-SELECT d.department_id, d.department_name
-FROM   departments d
-WHERE  NOT EXISTS (SELECT e.department_id
-                   FROM employees e
-                   WHERE d.department_id = e.department_id);
-    
+
 -- Utilizando Sub-Consultas Correlacionadas
-               
-SELECT e1.employee_id, e1.first_name, e1.last_name, e1.department_id, e1.salary
-FROM   employees e1
-WHERE  e1.salary >= (SELECT    TRUNC(AVG(NVL(salary,0)),0)
-                     FROM      employees e2
-                     WHERE     e1.department_id = e2.department_id);
-                   
-SELECT    TRUNC(AVG(NVL(salary,0)),0)
-FROM      employees e2
-WHERE     e2.department_id = 60;
+SELECT
+       E1.EMPLOYEE_ID,
+       E1.FIRST_NAME,
+       E1.LAST_NAME,
+       E1.DEPARTMENT_ID,
+       E1.SALARY
+FROM
+       EMPLOYEES E1
+WHERE
+       E1.SALARY >= (
+              SELECT
+                     TRUNC(AVG(NVL(SALARY,
+                     0)),
+                     0)
+              FROM
+                     EMPLOYEES E2
+              WHERE
+                     E1.DEPARTMENT_ID = E2.DEPARTMENT_ID
+       );
 
-
--- Utilizando Sub-consultas Multiple-Column 
-
-SELECT e1.employee_id, e1.first_name, e1.job_id, e1.salary
-FROM   employees e1
-WHERE (e1.job_id, e1.salary) IN (SELECT   e2.job_id, MAX(e2.salary)
-                                 FROM     employees e2
-                                 GROUP by e2.job_id);
-								 
-
-
-
-
-
-
-
-
-
-
-
+SELECT
+       TRUNC(AVG(NVL(SALARY,
+       0)),
+       0)
+FROM
+       EMPLOYEES E2
+WHERE
+       E2.DEPARTMENT_ID = 60;
 
 
 
-
-
+-- Utilizando Sub-consultas Multiple-Column
+SELECT
+       E1.EMPLOYEE_ID,
+       E1.FIRST_NAME,
+       E1.JOB_ID,
+       E1.SALARY
+FROM
+       EMPLOYEES E1
+WHERE
+       (E1.JOB_ID,
+       E1.SALARY) IN (
+              SELECT
+                     E2.JOB_ID,
+                     MAX(E2.SALARY)
+              FROM
+                     EMPLOYEES E2
+              GROUP BY
+                     E2.JOB_ID
+       );
