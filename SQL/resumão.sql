@@ -1478,3 +1478,34 @@ FROM employees
 WHERE job_id = 'SA_REP';
 
 COMMIT;
+
+SELECT *
+FROM sales_reps;
+
+-- Utilizando o comando UPDATE
+UPDATE employees
+SET salary = salary * 1.2;
+
+ROLLBACK;
+
+UPDATE employees
+SET salary = salary * 1.2
+WHERE last_name = 'King';
+
+COMMIT;
+
+SELECT *
+FROM employees
+WHERE last_name = 'King';
+
+-- Utilizando o comando UPDATE com Sub-consultas
+UPDATE employees
+SET job_id = (SELECT job_id
+              FROM employees
+              WHERE employee_id = 141),
+    salary = (SELECT salary
+              FROM employees
+              WHERE employee_id = 141)
+WHERE employee_id = 140;
+
+COMMIT;
