@@ -1554,3 +1554,27 @@ INSERT INTO employees
 ROLlBACK TO SAVEPOINT  A;
 
 COMMIT; 
+
+
+SELECT *
+FROM employees
+ORDER BY employee_id DESC;
+
+-- Clausula FOR UPDATE no comando SELECT 
+SELECT employee_id, salary, commission_pct, job_id
+FROM   employees
+WHERE  job_id = 'SA_REP'
+FOR UPDATE
+ORDER BY employee_id;
+
+COMMIT;
+
+SELECT e.employee_id, e.salary, e.commission_pct
+FROM employees e JOIN departments d
+USING (department_id)
+WHERE job_id = 'ST_CLERK'
+AND location_id = 1500
+FOR UPDATE of e.salary
+ORDER BY e.employee_id;
+
+COMMIT;
