@@ -1396,3 +1396,32 @@ WHERE
               GROUP BY
                      E2.JOB_ID
        );
+
+
+-- Comandos DML - Manipulando dados 
+
+-- Utilizando o Comando INSERT
+INSERT INTO departments(department_id,
+department_name, manager_id, location_id)
+VALUES (280, 'Project Management', 103, 1400);
+
+-- Inserindo Linhas com valores NULOS Método Explícito
+INSERT INTO departments
+VALUES (290, 'Data Science', NULL, NULL);
+
+-- Inserindo Linhas com valores NULOS Método Implícito
+INSERT INTO departments(department_id,
+department_name)
+VALUES (300, 'Business Intelligence');
+desc departments
+
+-- Inserindo Linhas com valores NULOS Método Explícito
+INSERT INTO departments
+VALUES (301, 'Inovation', NULL, NULL);
+
+-- Inserindo Linhas com valores NULOS Método Implícito
+INSERT INTO departments(department_id,
+department_name)
+VALUES (302, 'IOT');
+
+COMMIT;
