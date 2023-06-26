@@ -1509,3 +1509,19 @@ SET job_id = (SELECT job_id
 WHERE employee_id = 140;
 
 COMMIT;
+
+
+-- Utilizando o comando DELETE
+DELETE FROM countries
+WHERE  country_name = 'Nigeria';
+
+ROLLBACK;
+
+-- Utilizando o comando ROLLBACK
+DELETE FROM employees
+WHERE employee_id = 208;
+
+-- Utilizando o comando COMMIT
+
+COMMIT;
+
