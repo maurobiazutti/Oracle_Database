@@ -1450,3 +1450,31 @@ FROM   employees
 ORDER BY employee_id DESC;
 
 COMMIT;
+
+
+-- Utilizando variáveis de Substituição
+SELECT *
+FROM departments
+ORDER BY department_id DESC;
+
+INSERT INTO departments
+(department_id, department_name, location_id)
+VALUES (&department_id, '&department_name',&location);
+
+COMMIT;
+
+-- Inserindo linhas a partir de uma Sub-consulta
+DROP TABLE sales_reps;
+
+CREATE TABLE sales_reps
+(id NUMBER(6,0),
+ name VARCHAR2(20),
+ salary NUMBER(8,2),
+ commission_pct NUMBER(2,2));
+
+INSERT INTO sales_reps(id, name, salary, commission_pct)
+SELECT employee_id, last_name, salary, commission_pct
+FROM employees
+WHERE job_id = 'SA_REP';
+
+COMMIT;
