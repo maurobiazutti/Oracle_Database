@@ -1,0 +1,1 @@
+/*Crie uma consulta que mostre o nome dos professores o total de aulas que ministram por curso.*/
