@@ -1,0 +1,1 @@
+/*Crie uma consulta que mostre o nome dos professores e a média de aulas que ministram.*/
