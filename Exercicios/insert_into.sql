@@ -58,3 +58,5 @@ INSERT INTO professor_disciplina (disc_codigo, prof_numero, ano) VALUES (8, 9, '
 INSERT INTO professor_disciplina (disc_codigo, prof_numero, ano) VALUES (9, 6, '2018');
 INSERT INTO professor_disciplina (disc_codigo, prof_numero, ano) VALUES (10, 3, '2018');
 INSERT INTO professor_disciplina (disc_codigo, prof_numero, ano) VALUES (11, 5, '2018');
+
+commit;

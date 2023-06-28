@@ -1,11 +1,7 @@
 /*Crie uma consulta que mostre todos os nomes dos professores do curso de 
 CST Sistemas para Internet, no ano de 2018, e os nomes das 
 disciplinas pelas quais são responsáveis.*/
-SELECT * FROM professor_disciplina;
-    
-SELECT * FROM disciplina;
 
-SELECT * FROM professor;
 --nomes dos professores do curso de CST Sistemas para Internet, no ano de 2018
 --nomes das disciplinas pelas quais são responsáveis
 SELECT 
