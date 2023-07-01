@@ -1,10 +1,7 @@
---
 -- Utilizando Funções Single Row
---
---
+
 
 -- Funções de conversão Maiúsculo & Minúsculo
-
 SELECT employee_id, last_name, department_id
 FROM employees
 WHERE last_name = 'KING';
@@ -36,7 +33,6 @@ FROM jobs
 WHERE  job_title = 'President';
 
 -- Funções tipo NUMBER
-
 SELECT ROUND(45.923,2), ROUND(45.923,0)
 FROM dual;
 
@@ -50,7 +46,6 @@ SELECT ABS(-9), SQRT(9)
 FROM dual;
 
 -- Funções tipo DATE 
-
 SELECT sysdate
 FROM dual;
 
@@ -63,7 +58,6 @@ SELECT 30000 * 1.25
 FROM dual;
 
 -- Cálculos com Datas
-
 SELECT sysdate, sysdate + 30, sysdate + 60, sysdate - 30
 FROM dual;
 
@@ -71,7 +65,6 @@ SELECT last_name, ROUND((SYSDATE-hire_date)/7,2) "SEMANAS DE TRABALHO'"
 FROM employees;
 
 -- Outras Funções tipo DATE
-
 SELECT first_name, last_name, ROUND(MONTHS_BETWEEN(sysdate, hire_date),2) "MESES DE TRABALHO"
 FROM employees;
 

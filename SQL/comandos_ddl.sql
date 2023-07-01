@@ -1,9 +1,8 @@
- -- Comandos DDL 
---
--- Aula 1 - Criando e Gerenciando Tabelas
---
--- Criando Tabelas
+-- Comandos DDL 
 
+-- Aula 1 - Criando e Gerenciando Tabelas
+
+-- Criando Tabelas
 DROP TABLE projects;
 CREATE TABLE projects
 (project_id    NUMBER(6)    NOT NULL,
@@ -29,13 +28,11 @@ CREATE TABLE TEAMS
  employee_id   NUMBER(6)  NOT NULL);
 
 -- Consultando a Estrutura da Tabela
-
 DESC projects
 
 DESC teams;
 
 -- Tipo ROWID
-
 DESC employees
 
 SELECT employee_id, first_name, rowid, LENGTH(rowid)
@@ -43,14 +40,12 @@ from   employees
 WHERE rowid = 'AAAR6YAAEAAALBbAAE';
 
 -- Consultando as Tabelas existentes pelo DicionÃ¡rio de Dados
-
 DESC user_tables
 
 SELECT table_name
 FROM   user_tables;
 
 -- Consultando os Objetos do tipo TABLE do usuÃ¡rio
-
 DESC user_objects
 
 SELECT object_name, object_type
@@ -58,7 +53,6 @@ FROM   user_objects
 WHERE  object_type = 'TABLE';
 
 -- Criando uma Tabela utilizando uma Sub-consulta
-
 DROP TABLE employees_department60;
 
 CREATE TABLE employees_department60
@@ -73,20 +67,17 @@ SELECT *
 FROM   employees_department60;
 
 -- TRUNCATE TABLE
-
 TRUNCATE TABLE employees_department60;
 
 SELECT *
 FROM   employees_department60;
 
 -- DROP TABLE
-
 DROP TABLE employees_department60;
 
 SELECT *
 FROM   employees_department60;
 
 -- Consultando a Lixeira
-
 SELECT *
 FROM user_recyclebin;
