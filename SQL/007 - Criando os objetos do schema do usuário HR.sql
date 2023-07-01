@@ -1,4 +1,3 @@
---
 -- 007 - Criando os objetos do schema do usuário HR
 
 /*
@@ -9,8 +8,6 @@
 /*
   Remove as Tabelas caso já existam
 */
-
-
 DROP TABLE job_history CASCADE CONSTRAINTS;
 DROP TABLE departments CASCADE CONSTRAINTS;
 DROP TABLE employees CASCADE CONSTRAINTS;
@@ -31,7 +28,6 @@ ALTER SESSION SET NLS_TERRITORY=America;
 */
 
 /* Regions */
-
 CREATE TABLE regions (
   region_id NUMBER CONSTRAINT regions_id_nn NOT NULL,
   region_name VARCHAR2(25)
@@ -45,7 +41,6 @@ ADD CONSTRAINT reg_id_pk
 PRIMARY KEY (region_id);
 
 /* Countries */
-
 CREATE TABLE countries (
   country_id CHAR(2) CONSTRAINT  country_id_nn NOT NULL,
   country_name VARCHAR2(40),
@@ -60,7 +55,6 @@ FOREIGN KEY (region_id)
 REFERENCES regions(region_id);
 
 /* Locations */
-
 CREATE TABLE locations (
   location_id    NUMBER(4),
   street_address VARCHAR2(40),
@@ -87,8 +81,6 @@ CREATE SEQUENCE locations_seq
   NOCYCLE;
 
 /* Departments */
-
-
 CREATE TABLE departments (
   department_id    NUMBER(4),
   department_name  VARCHAR2(30) CONSTRAINT  dept_name_nn  NOT NULL,
@@ -113,7 +105,6 @@ CREATE SEQUENCE departments_seq
   NOCYCLE;
 
 /* Jobs */
-
 CREATE TABLE jobs (
   job_id         VARCHAR2(10),
   job_title      VARCHAR2(35) CONSTRAINT job_title_nn  NOT NULL,
@@ -130,7 +121,6 @@ ADD (
 );
 
 /* Employees */
-
 CREATE TABLE employees (
   employee_id    NUMBER(6),
   first_name     VARCHAR2(20),
@@ -164,7 +154,6 @@ ADD (
 );
 
 /* Alter Tables */
-
 ALTER TABLE departments
 ADD (
   CONSTRAINT dept_mgr_fk
