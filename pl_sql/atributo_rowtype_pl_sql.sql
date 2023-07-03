@@ -1,11 +1,11 @@
--- Criado Grupos utilizando a ClÃ¡usula GROUP BY
+-- Criado Grupos utilizando a Cláusula GROUP BY
 
 SELECT department_id, AVG(salary)
 FROM   employees
 GROUP BY department_id 
 ORDER BY department_id;
 
--- Utilizando a clÃ¡sula Group by com mais de uma Coluna ou ExpressÃ£o
+-- Utilizando a clásula Group by com mais de uma Coluna ou ExpressÃ£o
 
 SELECT department_id, job_id, SUM(salary)
 FROM employees
@@ -17,27 +17,27 @@ FROM employees
 GROUP BY department_id, job_id
 ORDER BY department_id, job_id;
 
--- Consultas incorretas utilizando FunÃ§Ãµes de Grupo
+-- Consultas incorretas utilizando Funções de Grupo
 
 SELECT department_id, AVG(salary)
 FROM   employees;
 
--- Corrigindo consultas incorretas utilizando FunÃ§Ãµes de Grupo
+-- Corrigindo consultas incorretas utilizando Funções de Grupo
 
 SELECT department_id,  AVG(salary)
 FROM employees
 GROUP BY department_id;
 
--- Consultas incorretas utilizando FunÃ§Ãµes de Grupo
+-- Consultas incorretas utilizando Funções de Grupo
 
 SELECT department_id, MAX(salary)
 FROM   employees
 WHERE  MAX(salary) > 10000
 GROUP BY department_id;
 
--- Corrigindo consultas incorretas utilizando FunÃ§Ãµes de Grupo
+-- Corrigindo consultas incorretas utilizando Funções de Grupo
 
--- Restringindo Grupos utilizando a clÃ¡usula HAVING
+-- Restringindo Grupos utilizando a cláusula HAVING
 
 SELECT department_id, MAX(salary)
 FROM   employees
@@ -51,7 +51,7 @@ GROUP BY job_id
 HAVING   SUM(salary) > 10000
 ORDER BY SUM(salary);
 
--- Aninhando FunÃ§Ãµes de Grupo
+-- Aninhando Funções de Grupo
 
 SELECT MAX(AVG(salary))
 FROM employees

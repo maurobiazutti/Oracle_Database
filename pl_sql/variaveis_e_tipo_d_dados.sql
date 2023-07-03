@@ -24,9 +24,9 @@ DECLARE
     vCaracterTamanhoVariavel     VARCHAR2(100) := 'Minas Gerais, MG';
     vLong                        LONG := 'Texto Tamanho variável de até 32760 bytes';
     vCaracterTamFixoUniver       NCHAR(100) := 'Texto de Tamanho Fixo Universal de atÃ© 32767 bytes';
-    vCaractTamVariavelUnir       NVARCHAR2(100) := 'Texto Tamanho variÃ¡vel Universal de atÃ© 32767 bytes';
+    vCaractTamVariavelUnir       NVARCHAR2(100) := 'Texto Tamanho variável Universal de atÃ© 32767 bytes';
     vData                        DATE := '01/05/2023';
-    vDataAtual                   DATE := SYSDATE;
+    vDataAtual                   DATE := SYSDATE; -- Data Atual
     vDataAtualComAte9Digt        TIMESTAMP := SYSTIMESTAMP;
     vDataAtualComLimt            TIMESTAMP(3) := SYSTIMESTAMP;
     vDataAtualComHoraUTCServidor TIMESTAMP WITH TIME ZONE := SYSTIMESTAMP;
