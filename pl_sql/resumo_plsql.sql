@@ -69,3 +69,84 @@ BEGIN
     dbms_output.put_line('Somatorio de Salarios: ' || vsum_salary);
 END;
 
+
+-- Utilizando o INSERT dentro do PL/SQL - SINTAXE
+
+-- 01- Exemplo de como fazer INSET com PL/SQL
+DECLARE
+    vfisrt_name employees.first_name%TYPE;
+    vlast_name  employees.last_name%TYPE;
+    vsalary     employees.salary%TYPE;
+BEGIN
+    INSERT INTO employees (
+        employee_id,
+        first_name,
+        last_name,
+        email,
+        phone_number,
+        hire_date,
+        job_id,
+        salary,
+        commission_pct,
+        manager_id,
+        department_id
+    ) VALUES (
+        employees_seq.NEXTVAL,
+        'Kobe',
+        'Bryant',
+        'KBRYANT',
+        '515.123.48868',
+        sysdate,
+        'IT_PROG',
+        15000,
+        0.4,
+        103,
+        60
+    );
+
+    COMMIT;
+END;
+
+
+-- 02- Exemplo de como fazer INSET com PL/SQL
+DECLARE
+    vemployee_id    employees.employee_id%TYPE := employees_seq.NEXTVAL;
+    vfisrt_name     employees.first_name%TYPE := 'Mauro';
+    vlast_name      employees.last_name%TYPE := 'Biazutti';
+    vemail          employees.email%TYPE := 'GMAILMAURO';
+    vphone_number   employees.phone_number%TYPE := '37988222022';
+    vhire_date      employees.hire_date%TYPE := sysdate;
+    vjob_id         employees.job_id%TYPE := 'IT_PROG';
+    vsalary         employees.salary%TYPE := 18000;
+    vcommission_pct employees.commission_pct%TYPE := 0.4;
+    vmanager_id     employees.manager_id%TYPE := 103;
+    vdepartment_id  employees.department_id%TYPE := 60;
+BEGIN
+    INSERT INTO employees (
+        employee_id,
+        first_name,
+        last_name,
+        email,
+        phone_number,
+        hire_date,
+        job_id,
+        salary,
+        commission_pct,
+        manager_id,
+        department_id
+    ) VALUES (
+        vemployee_id,
+        vfisrt_name,
+        vlast_name,
+        vemail,
+        vphone_number,
+        vhire_date,
+        vjob_id,
+        vsalary,
+        vcommission_pct,
+        vmanager_id,
+        vdepartment_id
+    );
+
+    COMMIT;
+END;
