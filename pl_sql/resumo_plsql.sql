@@ -166,3 +166,15 @@ BEGIN
 
     COMMIT;
 END;
+
+
+-- Utilizando o DELETE dentro do PL/SQL - SINTAXE
+
+DECLARE
+    vemployee_id employees.employee_id%TYPE := 207;
+BEGIN
+    DELETE FROM employees
+    WHERE
+        employee_id = vemployee_id;
+    COMMIT;
+END;
