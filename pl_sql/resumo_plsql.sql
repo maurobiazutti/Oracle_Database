@@ -152,3 +152,17 @@ BEGIN
 END;
 
 -- Utilizando o UPDATE dentro do PL/SQL - SINTAXE
+
+--Atualizando salario com aumento de 10%
+DECLARE
+    vemployee_id employees.employee_id%TYPE := 209;
+    vpercentual  NUMBER(3) := 10;
+BEGIN
+    UPDATE employees
+    SET
+        salary = (vpercentual / 100 * salary) + salary
+    WHERE
+        employee_id = vemployee_id;
+
+    COMMIT;
+END;
