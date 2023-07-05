@@ -178,3 +178,72 @@ BEGIN
         employee_id = vemployee_id;
     COMMIT;
 END;
+
+
+--COMMIT Efetiva a tranzação 
+DECLARE
+    vemployee_id employees.employee_id%TYPE := 150;
+BEGIN
+    UPDATE employees
+    SET
+        salary = 15000
+    WHERE
+        employee_id = vemployee_id;
+
+    COMMIT;
+END;
+
+--ROLLBACK Desfaz o comando
+DECLARE
+    vemployee_id employees.employee_id%TYPE := 150;
+BEGIN
+    UPDATE employees
+    SET
+        salary = 20000
+    WHERE
+        employee_id = vemployee_id;
+
+    ROLLBACK;
+END;
+
+
+--SAVEPOINT Salva ate o ponto indicado
+DECLARE
+BEGIN
+    INSERT INTO employees (
+        employee_id,
+        first_name,
+        last_name,
+        email,
+        phone_number,
+        hire_date,
+        job_id,
+        salary,
+        commission_pct,
+        manager_id,
+        department_id
+    ) VALUES (
+        employees_seq.NEXTVAL,
+        'Marcos',
+        'Lima',
+        'gmailmarcos',
+        '515.123.45568',
+        sysdate,
+        'IT_PROG',
+        25000,
+        0.4,
+        103,
+        60
+    );
+    SAVEPOINT insertok; -- Salva as operacões feita ate este ponto: Importante dar um nome para o "SAVEPONT nomeDoSavePoint"
+    
+    UPDATE employees
+    SET
+        salary = 30000
+    WHERE
+        job_id = 'IT_PROG';
+
+    ROLLBACK TO insertok; -- O Rollback vai apagar só o comando UPDATE PORQUE foi passado o TO INSERTOK que esta salvo pelo SAVEPOINT
+  
+    COMMIT;
+END;    
