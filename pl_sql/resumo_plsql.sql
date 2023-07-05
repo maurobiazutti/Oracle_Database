@@ -5,7 +5,7 @@
 -- Se retormas mais de uma gera a EXCEÇÃO TOO_MANY_ROWS
 -- Se o SELECT retornar nenhuma linha gera a EXCEÇÃO NO_DATA_FOUND
 
-SET SERVEROUTPUT ON
+SET SERVEROUTPUT ON -- Ativa o buffer de saída do servidor e direciona qualquer saída subsequente gerada pelo programa a ser exibida no painel de saída ou no console do aplicativo
  
 /*
 01 - Exemplo
@@ -246,4 +246,6 @@ BEGIN
     ROLLBACK TO insertok; -- O Rollback vai apagar só o comando UPDATE PORQUE foi passado o TO INSERTOK que esta salvo pelo SAVEPOINT
   
     COMMIT;
-END;    
+END;   
+
+
