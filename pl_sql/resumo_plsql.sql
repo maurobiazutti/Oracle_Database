@@ -150,3 +150,5 @@ BEGIN
 
     COMMIT;
 END;
+
+-- Utilizando o UPDATE dentro do PL/SQL - SINTAXE
