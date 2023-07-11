@@ -637,3 +637,20 @@ EXCEPTION
   WHEN OTHERS THEN
      RAISE_APPLICATION_ERROR(-20002, 'Erro Oracle ' || SQLCODE || SQLERRM);
 END;
+
+-- Executando procedure parametro Tipo OUT
+SET SERVEROUTPUT ON
+SET VERIFY OFF
+DECLARE 
+  employees_record  employees%ROWTYPE;
+BEGIN
+  PRC_CONSULTA_EMPREGADO(100, employees_record.first_name, employees_record.last_name, employees_record.email,
+    employees_record.phone_number, employees_record.hire_date, employees_record.job_id, employees_record.salary, 
+    employees_record.commission_pct, employees_record.manager_id, employees_record.department_id);
+    DBMS_OUTPUT.PUT_LINE(employees_record.first_name || ' ' || 
+                         employees_record.last_name || ' - ' ||
+                         employees_record.department_id || ' - ' ||
+                         employees_record.job_id || ' - ' ||
+                         employees_record.phone_number || ' - ' ||
+                         LTRIM(TO_CHAR(employees_record.salary, 'L99G999G999D99')));
+END;
