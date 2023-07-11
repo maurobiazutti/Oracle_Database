@@ -478,3 +478,25 @@ EXCEPTION
   WHEN OTHERS THEN
      RAISE_APPLICATION_ERROR(-20001, 'Erro Oracle ' || SQLCODE || SQLERRM);
 END;
+
+-- Executando a Procedure pelo Bloco PL/SQL
+BEGIN
+  PRC_INSERE_EMPREGADO('David', 'Bowie','DBOWIE','515.127.4861',SYSDATE,'IT_PROG',15000,NULL,103,60);
+  COMMIT;
+END;
+
+-- Consultando o empregado inserido
+SELECT *
+FROM   employees
+WHERE  first_name = 'David' AND
+       last_name = 'Bowie';
+
+-- Executando a Procedure com o comando EXECUTE do SQL*PLUS
+EXEC PRC_INSERE_EMPREGADO('Greg', 'Lake','GLAKE','515.127.4961',SYSDATE,'IT_PROG',15000,NULL,103,60)
+COMMIT;
+
+-- Consultando o empregado inserido
+SELECT *
+FROM   employees
+WHERE  first_name = 'Greg' AND
+       last_name = 'Lake';
