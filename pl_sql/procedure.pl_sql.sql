@@ -96,7 +96,7 @@ EXCEPTION
      RAISE_APPLICATION_ERROR(-20001, 'Erro Oracle: ' || SQLCODE || ' - ' || SQLERRM);
 END;
 
-- Executando a Procedure pelo Bloco PL/SQL
+-- Executando a Procedure pelo Bloco PL/SQL
 
 BEGIN
   PRC_AUMENTA_SALARIO_EMPREGADO(109,10);

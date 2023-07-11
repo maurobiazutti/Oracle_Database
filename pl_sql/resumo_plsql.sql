@@ -415,3 +415,20 @@ FOR i IN 1..8 LOOP
 END LOOP;
 DBMS_OUTPUT.PUT_LINE('Total Final =  ' || to_char(vTotal,'99G999G999G999G999G999G999G999D99'));
 END;
+
+
+
+
+-- PROCERURE --
+
+-- Criando uma Procedure de Banco de Dados ENTRADA tipo IN
+
+--Estrutura Basica
+CREATE OR REPLACE PROCEDURE PRC_NOME_DA_PROCEDURE (
+-- Paramentros da procedure
+) AS
+-- Variáveis
+BEGIN
+-- CÓDIGO DA PROCEDURE
+
+END;
