@@ -1,5 +1,17 @@
 --PL/SQL
 
+--Para saber qual usuarios estou usando
+SELECT USER FROM DUAL;
+
+--Para saber quais privilegios o usuario atual tem
+SELECT privilege FROM user_sys_privs;
+
+--Para saber qual privilegios outros usuarios tem
+SELECT privilege FROM dba_sys_privs WHERE grantee = 'NOME_DO_USUARIO';
+
+--Para dar privilegio de criar TABLESPACE
+GRANT CREATE TABLESPACE TO SYSTEM;
+
 -- Utilizando o SELECT dentro do PL/SQL - SINTAXE
 -- SELECT deve retorna somente uma linha.
 -- Se retormas mais de uma gera a EXCEÇÃO TOO_MANY_ROWS
