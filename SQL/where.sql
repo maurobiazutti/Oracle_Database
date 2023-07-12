@@ -9,6 +9,11 @@ SELECT employee_id, last_name, job_id, department_id
 FROM   employees
 WHERE  job_id = 'IT_PROG';
 
+--Fazendo multiplas buscas com IN 
+SELECT ALL_USERS. *
+FROM ALL_USERS
+WHERE USER_ID IN (97, 14, 26);
+
 -- Utilizando Strings de caractere na cláusula WHERE
 SELECT first_name, last_name, job_id, department_id, hire_date
 FROM employees
