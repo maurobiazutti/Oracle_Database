@@ -11,6 +11,11 @@ DESC Jobs
 
 DESC departments
 
+--Para mostrar todos os usuarios
+SELECT ALL_USERS. *
+FROM ALL_USERS;
+
+
 -- Selecionando todas as colunas da Tabela
 SELECT *
 FROM   departments;
