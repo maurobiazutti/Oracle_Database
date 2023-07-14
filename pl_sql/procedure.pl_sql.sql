@@ -231,3 +231,40 @@ BEGIN
                          LTRIM(TO_CHAR(employees_record.salary, 'L99G999G999D99')));
 END;
 
+
+
+--Procedure Cadastro e Validação
+--PROCEDURE PARA CADASTRAR USUÁRIO
+CREATE OR REPLACE PROCEDURE prc_insert_cadastro_produto (
+    p_nome_produto  VARCHAR2,
+    p_linha_produto VARCHAR2,
+    p_tipo_produto  CHAR
+) AS
+    v_count INT := 0;
+BEGIN
+    SELECT
+        COUNT(1)
+    INTO v_count
+    FROM
+        tb_produto
+    WHERE
+        nome_produto = p_nome_produto;
+
+    IF ( NVL(v_count, 0) > 0 ) THEN
+        INSERT INTO tb_produto (
+            id_produto,
+            nome_produto,
+            linha_produto,
+            tipo_produto
+        ) VALUES (
+            id_produto.NEXTVAL,
+            p_nome_produto,
+            p_linha_produto,
+            p_tipo_produto
+        );
+
+    ELSE
+        raise_application_error(-20001, 'PRODUTO CADASTRADO COM SUCESSO!');
+    END IF;
+
+END;
