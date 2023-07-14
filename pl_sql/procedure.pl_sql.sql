@@ -269,8 +269,38 @@ BEGIN
 
 END;
 
---Procedure DELETE
 
+
+--Procedure Cadastro e Validação
+--PROCEDURE PARA EXCLUSÃO EMPRESA
+CREATE OR REPLACE PROCEDURE prc_delete_cadastro_empresa (
+    p_id_empresa INT
+) AS
+    v_count INT := 0;
+BEGIN
+    SELECT
+        COUNT(1)
+    INTO v_count
+    FROM
+        tb_empresa
+    WHERE
+        id_empresa = p_id_empresa;
+
+    IF ( nvl(v_count, 0) > 0 ) THEN
+        DELETE FROM tb_empresa
+        WHERE
+            id_empresa = p_id_empresa;
+
+        COMMIT;
+    ELSE
+        raise_application_error(-20001, 'EMPRESA NÃO EXISTE!');
+    END IF;
+
+END;
+
+
+
+--Procedure DELETE
 --PROCEDURE PARA EXCLUSÃO EMPRESA
 CREATE OR REPLACE PROCEDURE prc_delete_cadastro_empresa (
     p_id_empresa INT
