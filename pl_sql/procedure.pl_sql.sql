@@ -328,6 +328,11 @@ BEGIN
 END;
 
 
+--Teste procedures Empresa
+EXECUTE prc_insert_cadastro_empresa(p_nome_empresa=>'BARBER SHOP', p_cnpj_cpf=>'001.002.003/0001-88');
+EXECUTE prc_insert_cadastro_empresa(p_nome_empresa=>'BARBER SHOP TESTE', p_cnpj_cpf=>'001.002.003/0001-89');
 
+
+EXECUTE prc_delete_cadastro_empresa(p_id_empresa=> 2);
 
 
