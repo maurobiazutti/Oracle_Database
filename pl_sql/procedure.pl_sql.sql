@@ -1,5 +1,13 @@
 -- Criando uma Procedure de Banco de Dados ENTRADA tipo IN
 
+/*
+Em resumo, as procedures são usadas para agrupar comandos relacionados e 
+executar ações específicas em um programa de computador.
+ Elas promovem a reutilização de código, modularidade, legibilidade e encapsulamento, 
+ tornando o desenvolvimento de software mais eficiente e organizado.
+*/
+
+
 --Estrutura Basica
 CREATE OR REPLACE PROCEDURE PRC_NOME_DA_PROCEDURE (
 -- Paramentros da procedure
