@@ -727,7 +727,6 @@ DBMS_OUTPUT.PUT_LINE('Total Final =  ' || to_char(vTotal,'99G999G999G999G999G999
 END;
 
 -- FOR LOOP
-
 SET SERVEROUTPUT ON
 ACCEPT pLimite PROMPT 'Digite o valor do limite: '
 DECLARE
@@ -740,7 +739,6 @@ END LOOP;
 END;
 
 -- WHILE LOOP
-
 SET SERVEROUTPUT ON
 ACCEPT pLimite PROMPT 'Digite o valor do limite: '
 DECLARE
