@@ -668,8 +668,9 @@ BEGIN
 END;
 
 
--- LOOP Básico
 
+
+-- LOOP Básico
 SET SERVEROUTPUT ON
 ACCEPT pLimite PROMPT 'Digite o valor do limite: '
 DECLARE
@@ -704,8 +705,9 @@ END LOOP;
 DBMS_OUTPUT.PUT_LINE('Total Final =  ' || to_char(vTotal,'99G999G999G999G999G999G999G999D99'));
 END;
 
--- Utilizando EXIT com Label
 
+
+-- Utilizando EXIT com Label
 SET SERVEROUTPUT ON
 DECLARE
   vTotal   NUMBER(38) :=  1;
